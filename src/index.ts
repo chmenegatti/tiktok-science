@@ -3,18 +3,22 @@ import { basename, join } from "node:path";
 import { dateStamp, temaDoDia } from "./themes.js";
 import { gerarRoteiro } from "./pipeline/script.js";
 import { gerarImagem } from "./pipeline/images.js";
+import { sintetizar } from "./pipeline/tts.js";
 import { montarSlides } from "./pipeline/slides.js";
-import { publicarCarrossel } from "./pipeline/publish.js";
+import { montarReel } from "./pipeline/reel.js";
+import { publicarConteudo } from "./pipeline/publish.js";
 import type { ResultadoPipeline } from "./types.js";
 
 /**
  * Pipeline diaria:
- *   tema do dia -> roteiro (Gemini) -> imagens de fundo (IA) por slide
- *   -> slides 1080x1080 (ffmpeg) -> [opcional] carrossel no Instagram.
+ *   tema do dia -> roteiro (Gemini) -> imagens (IA) + narracao (TTS) por slide
+ *   -> slides 1080x1080 + Reel 9:16 (ffmpeg)
+ *   -> [opcional] carrossel + Reel + Story no Instagram + cross-post Facebook.
  *
  * Uso:
- *   npm run today            gera os slides do dia (sem publicar)
- *   npm run publish          gera e publica o carrossel no Instagram
+ *   npm run today               gera slides e Reel localmente (sem publicar)
+ *   npm run publish             gera e publica tudo
+ *   npm run publish -- --slot 1 escolhe o slot do dia (0 = manha, 1 = tarde)
  */
 async function main(): Promise<ResultadoPipeline> {
   const publicar = process.argv.includes("--publish");
@@ -37,48 +41,61 @@ async function main(): Promise<ResultadoPipeline> {
   await writeFile(join(dir, "roteiro.json"), JSON.stringify(roteiro, null, 2));
   console.log(`  "${roteiro.titulo}" - ${roteiro.slides.length} slides`);
 
-  // 2. Imagem de fundo por slide (em paralelo)
-  console.log("Gerando imagens de fundo (IA)...");
+  // 2. Imagem de fundo (IA) + narracao (TTS) por slide, em paralelo
+  console.log("Gerando imagens (IA) e narracao (TTS)...");
   const assets = await Promise.all(
     roteiro.slides.map(async (slide, i) => {
       const image = join(dir, `image_${String(i).padStart(2, "0")}.png`);
-      await gerarImagem(slide.prompt_imagem, image);
-      return { image, titulo: slide.titulo, corpo: slide.corpo };
+      const audio = join(dir, `audio_${String(i).padStart(2, "0")}.mp3`);
+      await Promise.all([
+        gerarImagem(slide.prompt_imagem, image),
+        sintetizar(slide.narracao, audio),
+      ]);
+      return { image, audio, titulo: slide.titulo, corpo: slide.corpo };
     }),
   );
 
-  // 3. Composicao dos slides
+  // 3. Composicao dos slides (carrossel) e do Reel
   console.log("Compondo slides com ffmpeg...");
   const slidePaths = await montarSlides(assets, dir);
+  console.log("Montando Reel com ffmpeg...");
+  const reelAssets = slidePaths.map((slide, i) => ({ slide, audio: assets[i].audio }));
+  const reelPath = await montarReel(reelAssets, dir);
 
   // 4. Caption + hashtags
   const captionPath = join(dir, "caption.txt");
   const caption = `${roteiro.caption}\n\n${roteiro.hashtags.map((h) => `#${h}`).join(" ")}`;
   await writeFile(captionPath, caption);
 
-  console.log(`\nPronto: ${slidePaths.length} slides em ${dir}`);
+  console.log(`\nPronto: ${slidePaths.length} slides + Reel em ${dir}`);
   console.log(`Caption: ${captionPath}`);
 
-  // 5. Publicacao (opcional)
-  let mediaId: string | undefined;
+  // 5. Publicacao (opcional): carrossel + Reel + Story + Facebook
+  let resultado: ResultadoPipeline["publicacao"];
   if (publicar) {
-    console.log("Publicando carrossel no Instagram...");
-    mediaId = await publicarCarrossel(slidePaths, caption, stamp);
-    console.log(`Publicado. media_id=${mediaId}`);
+    console.log("Publicando no Instagram (carrossel + Reel + Story) e Facebook...");
+    resultado = await publicarConteudo({
+      slidePaths,
+      reelPath,
+      caption,
+      stamp,
+      story: true,
+      facebook: true,
+    });
+    console.log(`Publicado: ${JSON.stringify(resultado)}`);
   } else {
-    console.log("\n(--publish nao informado: slides so foram gerados localmente.)");
+    console.log("\n(--publish nao informado: midia so foi gerada localmente.)");
   }
 
-  // 6. Limpeza: mantem so os slides finais e a caption; remove intermediarios
-  //    (imagens de fundo, textos de drawtext, roteiro.json).
-  await limpar(dir, slidePaths, captionPath);
+  // 6. Limpeza: mantem so os slides finais, o Reel e a caption.
+  await limpar(dir, [...slidePaths, reelPath, captionPath]);
 
-  return { dir, roteiro, slidePaths, captionPath, mediaId };
+  return { dir, roteiro, slidePaths, reelPath, captionPath, publicacao: resultado };
 }
 
-/** Remove de `dir` tudo que nao seja um slide final ou a caption. */
-async function limpar(dir: string, slidePaths: string[], captionPath: string): Promise<void> {
-  const manter = new Set([...slidePaths, captionPath].map((p) => basename(p)));
+/** Remove de `dir` tudo que nao esteja na lista de arquivos a manter. */
+async function limpar(dir: string, manterPaths: string[]): Promise<void> {
+  const manter = new Set(manterPaths.map((p) => basename(p)));
   for (const nome of await readdir(dir)) {
     if (!manter.has(nome)) await unlink(join(dir, nome));
   }

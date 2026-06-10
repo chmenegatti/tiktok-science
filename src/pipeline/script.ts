@@ -1,19 +1,23 @@
 import { config, MODEL } from "../config.js";
 import type { Roteiro } from "../types.js";
 
-const SYSTEM = `Voce e um criador de carrosseis educativos sobre curiosidades cientificas para o Instagram, em portugues do Brasil.
+const SYSTEM = `Voce e um criador de carrosseis educativos sobre curiosidades cientificas para o Instagram, em portugues do Brasil. Seu objetivo e MAXIMIZAR ALCANCE (saves, compartilhamentos, comentarios e tempo de visualizacao).
 
 Regras:
 - Gere um carrossel com EXATAMENTE 10 slides sobre UMA curiosidade especifica e impactante da area pedida (limite do Instagram).
 - ESTRUTURA OBRIGATORIA:
-  - Slide 1 = CAPA: titulo forte/gancho (uma pergunta ou fato surpreendente). corpo curto provocando curiosidade.
-  - Slides do meio = CONTEUDO: cada um explica UM ponto, em ordem logica e progressiva.
-  - Slide final = CHAMADA PARA ACAO: convide a seguir o perfil para mais ciencia (ex: "Siga para mais curiosidades").
+  - Slide 1 = CAPA / SCROLL-STOPPER: titulo = gancho irresistivel (pergunta ousada ou fato chocante) que faz PARAR de rolar. corpo = uma frase de curiosidade que termina com a deixa "Arrasta para o lado ->".
+  - Slides do meio = CONTEUDO: cada um entrega UM ponto, em ordem logica e progressiva, com algo "salvavel" (dado, numero ou analogia memoravel).
+  - Slide final = CHAMADA PARA ACAO: peca EXPLICITAMENTE para SALVAR, COMPARTILHAR com alguem e SEGUIR o perfil.
 - titulo (por slide): MUITO curto, max ~6 palavras. Aparece no topo do slide.
 - corpo (por slide): 1 a 3 frases curtas e didaticas. Max ~45 palavras. Linguagem simples, direta, sem jargao desnecessario.
+- narracao (por slide): versao FALADA e bem curta do slide (8 a 12 palavras), natural para narrar em voz alta num Reel. Sem emojis.
 - prompt_imagem: descricao visual em INGLES de uma imagem de fundo quadrada (1:1), cinematic, alta qualidade, SEM texto, coerente com o slide. Deve ter areas escuras/limpas onde texto branco fique legivel.
-- caption: legenda do post, instigante, 1-2 frases, convidando a deslizar os slides.
-- hashtags: 6 a 10 hashtags relevantes SEM o "#". Inclua sempre "ciencia" e "curiosidades".
+- caption: otimizada para alcance e SEO do Instagram, no formato:
+  (1) PRIMEIRA LINHA = gancho forte (so ela aparece no feed);
+  (2) 1 a 3 frases de valor usando PALAVRAS-CHAVE da area (o Instagram indexa a legenda na busca);
+  (3) CTA explicito pedindo para Salvar, Compartilhar e Comentar.
+- hashtags: EXATAMENTE 5, todas SEM o "#", altamente relevantes (especificas + de nicho, evite genericas demais). Inclua sempre "ciencia".
 - Conteudo cientificamente correto. Nada de pseudociencia.`;
 
 // Schema no formato aceito pelo Gemini (subset do OpenAPI 3.0; tipos em MAIUSCULO,
@@ -30,10 +34,11 @@ const SCHEMA = {
         properties: {
           titulo: { type: "STRING" },
           corpo: { type: "STRING" },
+          narracao: { type: "STRING" },
           prompt_imagem: { type: "STRING" },
         },
-        required: ["titulo", "corpo", "prompt_imagem"],
-        propertyOrdering: ["titulo", "corpo", "prompt_imagem"],
+        required: ["titulo", "corpo", "narracao", "prompt_imagem"],
+        propertyOrdering: ["titulo", "corpo", "narracao", "prompt_imagem"],
       },
     },
     caption: { type: "STRING" },

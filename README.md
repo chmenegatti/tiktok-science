@@ -5,14 +5,15 @@ Gera **carrosseis de 10 slides** sobre curiosidades cientificas e publica no Ins
 ## Pipeline
 
 ```
-tema do dia  ->  roteiro (Gemini)  ->  imagens de fundo (IA)  ->  slides 1080x1080 (ffmpeg)  ->  carrossel no Instagram
+tema  ->  roteiro (Gemini)  ->  imagens (IA) + narracao (TTS)  ->  slides 1080x1080 + Reel 9:16 (ffmpeg)
+      ->  carrossel + Reel + Story no Instagram  +  cross-post Facebook
 ```
 
-1. **Tema** — rotaciona por dia entre 15 areas cientificas (`src/themes.ts`).
-2. **Roteiro** — Gemini (`gemini-2.5-flash`, free tier) gera 10 slides estruturados: capa/gancho, conteudo progressivo, chamada para seguir, alem de caption e hashtags.
-3. **Imagens** — uma imagem de fundo por slide via Gemini (mesma chave do roteiro, free tier).
-4. **Slides** — ffmpeg sobrepoe titulo + corpo + handle sobre a imagem escurecida, gerando um PNG 1080x1080 por slide.
-5. **Publicacao** — hospeda os PNGs no GitHub Pages (URLs publicas exigidas pela API) e publica como **carrossel** no feed via Instagram Graph API.
+1. **Tema** — rotaciona entre ~110 areas, 2 slots/dia (`src/themes.ts`).
+2. **Roteiro** — Gemini (`gemini-2.5-flash`, free tier) gera 10 slides otimizados para alcance: capa scroll-stopper, conteudo "salvavel", narracao curta por slide, caption com SEO + CTA e 5 hashtags.
+3. **Imagens + narracao** — uma imagem de fundo (Gemini) e uma narracao (Edge TTS) por slide.
+4. **Slides + Reel** — ffmpeg gera os PNGs 1080x1080 (texto sobre imagem escurecida) e monta um Reel 9:16 (slide sobre fundo borrado, narrado).
+5. **Publicacao** — hospeda a midia no GitHub Pages (URLs publicas exigidas pela API) e publica via Graph API: **carrossel + Reel + Story** no Instagram e **foto de capa na Pagina do Facebook**.
 
 ## Pre-requisitos
 
@@ -54,13 +55,14 @@ expira em ~60 dias — rode `npm run auth` de novo quando os posts comecarem a 4
 
 ## Saida
 
-Ao fim, `output/AAAA-MM-DD/` contem apenas o necessario para o post:
+Ao fim, `output/AAAA-MM-DD-<slot>/` contem apenas o necessario para o post:
 
 - `slide_*.png` — slides finais (imagem + texto), em ordem
+- `reel.mp4` — Reel vertical narrado
 - `caption.txt` — legenda + hashtags do post
 
-Os intermediarios (roteiro, imagens de fundo, textos do drawtext) sao gerados
-durante a execucao e removidos no final.
+Os intermediarios (roteiro, imagens de fundo, audios, clipes, textos do
+drawtext) sao gerados durante a execucao e removidos no final.
 
 Na publicacao, os slides finais sao copiados para `docs/media/AAAA-MM-DD/` e
 commitados para o GitHub Pages servir as URLs publicas.

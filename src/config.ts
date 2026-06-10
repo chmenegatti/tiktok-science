@@ -25,6 +25,10 @@ export const config = {
   fontFile: () =>
     optional("FONT_FILE", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
 
+  /** Voz e ritmo do Edge TTS usados na narracao do Reel. */
+  ttsVoice: () => optional("TTS_VOICE", "pt-BR-AntonioNeural"),
+  ttsRate: () => optional("TTS_RATE", "+8%"),
+
   /** Handle exibido no slide final (CTA) e usado na caption. */
   igHandle: () => optional("IG_HANDLE", "cmenegatti"),
 
@@ -54,4 +58,11 @@ export const MODEL = "gemini-2.5-flash";
 export const SLIDE = {
   width: 1080,
   height: 1080,
+} as const;
+
+/** Dimensoes do Reel (vertical 9:16). */
+export const REEL = {
+  width: 1080,
+  height: 1920,
+  fps: 30,
 } as const;
