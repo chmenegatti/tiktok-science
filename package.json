@@ -1,19 +1,18 @@
 {
-  "name": "tiktok-ciencia",
-  "version": "0.1.0",
+  "name": "instagram-ciencia",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Gera videos de 15s sobre curiosidades cientificas e publica no TikTok diariamente.",
+  "description": "Gera carrosseis de slides sobre curiosidades cientificas e publica no Instagram diariamente.",
   "scripts": {
     "dev": "tsx src/index.ts",
     "today": "tsx src/index.ts",
     "publish": "tsx src/index.ts --publish",
-    "auth": "tsx src/scripts/tiktok-auth.ts",
+    "auth": "tsx src/scripts/instagram-auth.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "msedge-tts": "^2.0.5"
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

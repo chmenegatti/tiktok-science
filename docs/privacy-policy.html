@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy — tiktok-science</title>
+  <title>Privacy Policy — instagram-ciencia</title>
   <style>
     body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 760px;
            margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
@@ -11,6 +11,7 @@
     h2 { margin-top: 1.8rem; }
     .updated { color: #666; font-style: italic; }
     a { color: #0a66c2; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -18,9 +19,9 @@
   <p class="updated">Last updated: June 10, 2026</p>
 
   <h2>1. Overview</h2>
-  <p>This Privacy Policy describes how tiktok-science ("the Application") handles
-  data. The Application is a personal, self-hosted tool maintained by Cesar
-  Menegatti (GitHub: <a href="https://github.com/chmenegatti">chmenegatti</a>).
+  <p>This Privacy Policy describes how instagram-ciencia ("the Application")
+  handles data. The Application is a personal, self-hosted tool maintained by
+  Cesar Menegatti (GitHub: <a href="https://github.com/chmenegatti">chmenegatti</a>).
   It runs under the control of its operator and is not offered as a hosted
   service to third parties.</p>
 
@@ -29,43 +30,48 @@
   personal data about end users or third parties. It processes only:</p>
   <ul>
     <li><strong>API credentials</strong> supplied by the operator (Google Gemini,
-    TikTok, etc.), stored locally in a <code>.env</code> file on the operator's
-    machine and never committed to source control.</li>
-    <li><strong>Generated content</strong> (scripts, narration, images, videos)
-    written to a local <code>output/</code> directory.</li>
+    Meta/Instagram, etc.), stored locally in a <code>.env</code> file on the
+    operator's machine and never committed to source control.</li>
+    <li><strong>Generated content</strong> (scripts, images, slides) written to a
+    local <code>output/</code> directory; the final slide images are published to
+    the operator's own Instagram account and hosted publicly on GitHub Pages to
+    enable publishing.</li>
   </ul>
 
   <h2>3. How Data Is Used</h2>
   <ul>
     <li>API credentials are used solely to authenticate requests to their
     respective third-party services.</li>
-    <li>TikTok access tokens are used only to upload generated videos to the
-    operator's own TikTok inbox as drafts.</li>
+    <li>The Instagram access token is used only to publish generated carousels to
+    the operator's own Instagram account.</li>
   </ul>
   <p>No data is sold, shared, or used for advertising or analytics.</p>
 
   <h2>4. Data Storage and Retention</h2>
-  <p>All credentials and generated content remain on the operator's local
-  machine. The Application maintains no remote database or backend. Retention is
-  entirely under the operator's control; deleting local files removes the data.</p>
+  <p>Credentials remain on the operator's local machine. Generated slides are
+  committed to the public <code>docs/media/</code> directory only to allow the
+  Instagram Graph API to fetch them by URL, and are overwritten on each run. The
+  Application maintains no other remote database or backend. Retention is under
+  the operator's control.</p>
 
   <h2>5. Third-Party Services</h2>
   <p>When the Application calls third-party APIs, the data sent to those services
   is governed by their own privacy policies:</p>
   <ul>
-    <li><strong>Google Gemini</strong> — script and image generation.</li>
-    <li><strong>TikTok Content Posting API</strong> — video upload to the
-    operator's inbox.</li>
-    <li><strong>Edge TTS</strong> and image providers — narration and image
-    synthesis.</li>
+    <li><strong>Google Gemini</strong> — script and background-image generation.</li>
+    <li><strong>GitHub Pages</strong> — public hosting of the generated slide
+    images.</li>
+    <li><strong>Instagram Graph API (Meta)</strong> — publishing the carousel to
+    the operator's own account.</li>
   </ul>
   <p>The operator should review the privacy policies of these providers.</p>
 
-  <h2>6. TikTok Data</h2>
-  <p>The Application requests the <code>video.upload</code> scope only. It uses
-  the resulting access token exclusively to send videos to the operator's own
-  TikTok inbox as drafts. It does not read, collect, or store any data from
-  TikTok user accounts.</p>
+  <h2>6. Instagram Data</h2>
+  <p>The Application requests only the permissions required to publish content
+  (<code>instagram_basic</code>, <code>instagram_content_publish</code>, and
+  page-listing scopes). It uses the resulting access token exclusively to publish
+  carousels to the operator's own Instagram account. It does not read, collect, or
+  store data from other Instagram users.</p>
 
   <h2>7. Security</h2>
   <p>Credentials are stored locally and excluded from version control via

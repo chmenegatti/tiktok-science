@@ -4,10 +4,10 @@ _Last updated: June 10, 2026_
 
 ## 1. Overview
 
-tiktok-science ("the Application") is a personal, automated pipeline that
-generates short-form science videos and sends them to the operator's own
-TikTok inbox as drafts for manual review and posting. The Application is
-maintained by Cesar Menegatti (GitHub: [chmenegatti](https://github.com/chmenegatti)).
+instagram-ciencia ("the Application") is a personal, automated pipeline that
+generates short educational science carousels (slides) and publishes them to the
+operator's own Instagram account. The Application is maintained by Cesar
+Menegatti (GitHub: [chmenegatti](https://github.com/chmenegatti)).
 
 ## 2. Acceptance of Terms
 
@@ -18,34 +18,32 @@ Terms of Service. If you do not agree, do not use the Application.
 
 The Application performs the following on behalf of its operator:
 
-- Generates a daily science topic and script.
-- Synthesizes narration and images.
-- Assembles a vertical video.
-- Optionally uploads the resulting video to the operator's TikTok inbox as a
-  draft via the TikTok Content Posting API. The Application does **not**
-  auto-publish content; all posting is performed manually by the operator.
+- Generates a daily science topic and a 10-slide script.
+- Synthesizes background images and composes slides.
+- Publishes the slides as a carousel to the operator's own Instagram account via
+  the Instagram Graph API.
 
-## 4. TikTok Platform Compliance
+## 4. Instagram / Meta Platform Compliance
 
-Use of the TikTok Content Posting API is subject to TikTok's Developer Terms of
-Service and Community Guidelines. The operator is solely responsible for
-ensuring that any content generated and uploaded complies with TikTok's
-policies and all applicable laws.
+Use of the Instagram Graph API is subject to Meta's Platform Terms, Developer
+Policies, and the Instagram Community Guidelines. The operator is solely
+responsible for ensuring that any content generated and published complies with
+those policies and all applicable laws.
 
 ## 5. User Responsibilities
 
 You are responsible for:
 
-- Obtaining and securing your own API credentials (Gemini, TikTok, etc.).
-- Reviewing all generated content before posting.
+- Obtaining and securing your own API credentials (Gemini, Meta/Instagram, etc.).
+- Reviewing generated content before or after publishing.
 - Ensuring generated content is accurate, lawful, and non-infringing.
 - Complying with all third-party API terms used by the Application.
 
 ## 6. Third-Party Services
 
-The Application relies on third-party services including Google Gemini, Edge
-TTS, image generation providers, and the TikTok Content Posting API. Their
-respective terms and privacy policies apply to your use of those services.
+The Application relies on third-party services including Google Gemini, image
+generation providers, GitHub Pages (image hosting), and the Instagram Graph API.
+Their respective terms and privacy policies apply to your use of those services.
 
 ## 7. No Warranty
 

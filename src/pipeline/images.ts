@@ -1,16 +1,16 @@
 import { writeFile } from "node:fs/promises";
-import { config, VIDEO } from "../config.js";
+import { config, SLIDE } from "../config.js";
 
 /**
- * Gera uma imagem para a cena e grava em `outPath`.
+ * Gera a imagem de fundo de um slide e grava em `outPath`.
  *
  * Providers:
  *  - "gemini" (default): usa a MESMA chave GEMINI_API_KEY do roteiro. Free tier.
  *  - "pollinations": gratis sem chave, mas hoje fortemente limitado/instavel
  *    (HTTP 402); use POLLINATIONS_TOKEN para um tier melhor.
  *
- * O estagio de video faz scale+crop para 1080x1920, entao a imagem nao precisa
- * sair perfeitamente vertical.
+ * O estagio de slides faz scale+crop para 1080x1080 e sobrepoe o texto, entao a
+ * imagem nao precisa sair perfeitamente quadrada nem conter texto.
  */
 export async function gerarImagem(prompt: string, outPath: string): Promise<void> {
   const provider = config.imageProvider();
@@ -32,7 +32,7 @@ async function gerarImagemGemini(prompt: string, outPath: string): Promise<void>
           role: "user",
           parts: [
             {
-              text: `Generate a vertical 9:16 cinematic image, high detail, no text overlay. Subject: ${prompt}`,
+              text: `Generate a square 1:1 cinematic image, high detail, no text overlay. Subject: ${prompt}`,
             },
           ],
         },
@@ -57,10 +57,10 @@ async function gerarImagemGemini(prompt: string, outPath: string): Promise<void>
 }
 
 async function gerarImagemPollinations(prompt: string, outPath: string): Promise<void> {
-  const full = `${prompt}. Vertical 9:16 composition, cinematic, high detail, no text`;
+  const full = `${prompt}. Square 1:1 composition, cinematic, high detail, no text`;
   const url = new URL(`https://image.pollinations.ai/prompt/${encodeURIComponent(full)}`);
-  url.searchParams.set("width", String(VIDEO.width));
-  url.searchParams.set("height", String(VIDEO.height));
+  url.searchParams.set("width", String(SLIDE.width));
+  url.searchParams.set("height", String(SLIDE.height));
   url.searchParams.set("model", "flux");
   url.searchParams.set("nologo", "true");
   url.searchParams.set("seed", String(Math.floor(Math.random() * 1e9)));

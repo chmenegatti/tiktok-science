@@ -1,17 +1,19 @@
 import { config, MODEL } from "../config.js";
 import type { Roteiro } from "../types.js";
 
-const SYSTEM = `Voce e roteirista de videos curtos (15 segundos) sobre curiosidades cientificas para o TikTok, em portugues do Brasil.
+const SYSTEM = `Voce e um criador de carrosseis educativos sobre curiosidades cientificas para o Instagram, em portugues do Brasil.
 
 Regras:
-- O video tem ~15s. Use 3 cenas.
-- REGRA CRITICA DE DURACAO: a soma de TODAS as narracoes deve ter no MAXIMO 35 palavras (cerca de 11 por cena). Frases curtas. Isso e obrigatorio para caber em 15s.
-- Cena 1 e um GANCHO forte: uma pergunta ou fato surpreendente que prende em 2s.
-- Narracao: linguagem simples, direta, ritmo de TikTok. Sem jargao desnecessario.
-- legenda: versao MUITO curta do que aparece na tela (max ~6 palavras). Vai ser queimada no video.
-- prompt_imagem: descricao visual em INGLES, vertical, cinematic, alta qualidade, coerente com a narracao da cena.
-- caption: legenda do post, instigante, 1-2 frases.
-- hashtags: 5 a 8 hashtags relevantes SEM o "#". Inclua sempre "ciencia" e "curiosidades".
+- Gere um carrossel com EXATAMENTE 10 slides sobre UMA curiosidade especifica e impactante da area pedida (limite do Instagram).
+- ESTRUTURA OBRIGATORIA:
+  - Slide 1 = CAPA: titulo forte/gancho (uma pergunta ou fato surpreendente). corpo curto provocando curiosidade.
+  - Slides do meio = CONTEUDO: cada um explica UM ponto, em ordem logica e progressiva.
+  - Slide final = CHAMADA PARA ACAO: convide a seguir o perfil para mais ciencia (ex: "Siga para mais curiosidades").
+- titulo (por slide): MUITO curto, max ~6 palavras. Aparece no topo do slide.
+- corpo (por slide): 1 a 3 frases curtas e didaticas. Max ~45 palavras. Linguagem simples, direta, sem jargao desnecessario.
+- prompt_imagem: descricao visual em INGLES de uma imagem de fundo quadrada (1:1), cinematic, alta qualidade, SEM texto, coerente com o slide. Deve ter areas escuras/limpas onde texto branco fique legivel.
+- caption: legenda do post, instigante, 1-2 frases, convidando a deslizar os slides.
+- hashtags: 6 a 10 hashtags relevantes SEM o "#". Inclua sempre "ciencia" e "curiosidades".
 - Conteudo cientificamente correto. Nada de pseudociencia.`;
 
 // Schema no formato aceito pelo Gemini (subset do OpenAPI 3.0; tipos em MAIUSCULO,
@@ -21,27 +23,27 @@ const SCHEMA = {
   properties: {
     tema: { type: "STRING" },
     titulo: { type: "STRING" },
-    cenas: {
+    slides: {
       type: "ARRAY",
       items: {
         type: "OBJECT",
         properties: {
-          narracao: { type: "STRING" },
-          legenda: { type: "STRING" },
+          titulo: { type: "STRING" },
+          corpo: { type: "STRING" },
           prompt_imagem: { type: "STRING" },
         },
-        required: ["narracao", "legenda", "prompt_imagem"],
-        propertyOrdering: ["narracao", "legenda", "prompt_imagem"],
+        required: ["titulo", "corpo", "prompt_imagem"],
+        propertyOrdering: ["titulo", "corpo", "prompt_imagem"],
       },
     },
     caption: { type: "STRING" },
     hashtags: { type: "ARRAY", items: { type: "STRING" } },
   },
-  required: ["tema", "titulo", "cenas", "caption", "hashtags"],
-  propertyOrdering: ["tema", "titulo", "cenas", "caption", "hashtags"],
+  required: ["tema", "titulo", "slides", "caption", "hashtags"],
+  propertyOrdering: ["tema", "titulo", "slides", "caption", "hashtags"],
 } as const;
 
-/** Gera o roteiro do dia para uma area cientifica usando o Gemini. */
+/** Gera o roteiro do carrossel do dia para uma area cientifica usando o Gemini. */
 export async function gerarRoteiro(tema: string): Promise<Roteiro> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${config.geminiKey()}`;
 
@@ -55,7 +57,7 @@ export async function gerarRoteiro(tema: string): Promise<Roteiro> {
           role: "user",
           parts: [
             {
-              text: `Crie o roteiro de hoje. Area: ${tema}. Escolha UMA curiosidade especifica e impactante dentro dessa area.`,
+              text: `Crie o carrossel de hoje. Area: ${tema}. Escolha UMA curiosidade especifica e impactante dentro dessa area.`,
             },
           ],
         },

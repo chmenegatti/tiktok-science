@@ -22,25 +22,36 @@ export const config = {
   geminiImageModel: () =>
     optional("GEMINI_IMAGE_MODEL", "gemini-2.5-flash-image"),
   pollinationsToken: () => optional("POLLINATIONS_TOKEN", ""),
-  ttsVoice: () => optional("TTS_VOICE", "pt-BR-AntonioNeural"),
-  ttsRate: () => optional("TTS_RATE", "+12%"),
   fontFile: () =>
     optional("FONT_FILE", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
-  tiktok: {
-    clientKey: () => required("TIKTOK_CLIENT_KEY"),
-    clientSecret: () => required("TIKTOK_CLIENT_SECRET"),
-    redirectUri: () =>
-      optional("TIKTOK_REDIRECT_URI", "http://localhost:3000/callback"),
-    accessToken: () => required("TIKTOK_ACCESS_TOKEN"),
+
+  /** Handle exibido no slide final (CTA) e usado na caption. */
+  igHandle: () => optional("IG_HANDLE", "cmenegatti"),
+
+  instagram: {
+    /** IG Business/Creator user id (numerico). Use `npm run auth` para descobrir. */
+    userId: () => required("IG_USER_ID"),
+    /** Long-lived access token (60 dias). Obtido via `npm run auth`. */
+    accessToken: () => required("IG_ACCESS_TOKEN"),
+    /** App id/secret do Meta (so necessarios para trocar/renovar token). */
+    appId: () => required("META_APP_ID"),
+    appSecret: () => required("META_APP_SECRET"),
+    graphVersion: () => optional("META_GRAPH_VERSION", "v21.0"),
   },
+
+  /**
+   * Base publica onde os slides ficam acessiveis para a Graph API buscar.
+   * Aponta para o GitHub Pages deste repo (pasta docs/).
+   */
+  publicBaseUrl: () =>
+    optional("PUBLIC_BASE_URL", "https://www.cesarmenegatti.com/tiktok-science"),
 };
 
 /** Modelo Gemini usado para gerar o roteiro. */
 export const MODEL = "gemini-2.5-flash";
 
-/** Dimensoes do video (vertical TikTok). */
-export const VIDEO = {
+/** Dimensoes do slide (quadrado, padrao carrossel Instagram). */
+export const SLIDE = {
   width: 1080,
-  height: 1920,
-  fps: 30,
+  height: 1080,
 } as const;
