@@ -18,8 +18,8 @@ async function git(args: string[]): Promise<void> {
   }
 }
 
-/** Espera uma URL responder 200 (Pages leva ~30-60s para publicar o build). */
-async function aguardarUrl(url: string, tentativas = 30): Promise<void> {
+/** Espera uma URL responder 200. O build do Pages pode levar varios minutos. */
+async function aguardarUrl(url: string, tentativas = 90): Promise<void> {
   for (let i = 0; i < tentativas; i++) {
     try {
       const res = await fetch(url, { method: "HEAD", redirect: "follow" });
@@ -30,6 +30,24 @@ async function aguardarUrl(url: string, tentativas = 30): Promise<void> {
     await new Promise((r) => setTimeout(r, 6000));
   }
   throw new Error(`Timeout esperando ${url} ficar publico no GitHub Pages.`);
+}
+
+/**
+ * Espera um container de midia terminar o processamento (status FINISHED) antes
+ * de publicar. Containers de carrossel demoram alguns segundos; publicar cedo
+ * demais retorna "Media ID is not available".
+ */
+async function aguardarContainer(id: string, tentativas = 20): Promise<void> {
+  const ver = config.instagram.graphVersion();
+  for (let i = 0; i < tentativas; i++) {
+    const url = `https://graph.facebook.com/${ver}/${id}?fields=status_code&access_token=${config.instagram.accessToken()}`;
+    const res = await fetch(url);
+    const data = (await res.json()) as { status_code?: string };
+    if (data.status_code === "FINISHED") return;
+    if (data.status_code === "ERROR") throw new Error(`Container ${id} falhou ao processar.`);
+    await new Promise((r) => setTimeout(r, 5000));
+  }
+  throw new Error(`Timeout esperando o container ${id} ficar pronto.`);
 }
 
 /**
@@ -127,6 +145,9 @@ export async function publicarCarrossel(
     children: childIds.join(","),
     caption,
   });
+
+  console.log("  Aguardando processamento do carrossel...");
+  await aguardarContainer(carouselId);
 
   console.log("  Publicando...");
   return graphPost(`${igUser}/media_publish`, { creation_id: carouselId });
