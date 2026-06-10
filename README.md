@@ -5,15 +5,18 @@ Gera **carrosseis de 10 slides** sobre curiosidades cientificas e publica no Ins
 ## Pipeline
 
 ```
-tema  ->  roteiro (Gemini)  ->  imagens (IA) + narracao (TTS)  ->  slides 1080x1080 + Reel 9:16 (ffmpeg)
+tema  ->  roteiro (Gemini)  ->  imagens de fundo (IA)  ->  slides 1080x1080 + Reel 9:16 com musica (ffmpeg)
       ->  carrossel + Reel + Story no Instagram  +  cross-post Facebook
 ```
 
 1. **Tema** — rotaciona entre ~110 areas, 2 slots/dia (`src/themes.ts`).
-2. **Roteiro** — Gemini (`gemini-2.5-flash`, free tier) gera 10 slides otimizados para alcance: capa scroll-stopper, conteudo "salvavel", narracao curta por slide, caption com SEO + CTA e 5 hashtags.
-3. **Imagens + narracao** — uma imagem de fundo (Gemini) e uma narracao (Edge TTS) por slide.
-4. **Slides + Reel** — ffmpeg gera os PNGs 1080x1080 (texto sobre imagem escurecida) e monta um Reel 9:16 (slide sobre fundo borrado, narrado).
+2. **Roteiro** — Gemini (`gemini-2.5-flash`, free tier) gera 10 slides otimizados para alcance: capa scroll-stopper, conteudo "salvavel", caption com SEO + CTA e 5 hashtags.
+3. **Imagens** — uma imagem de fundo (Gemini) por slide.
+4. **Slides + Reel** — ffmpeg gera os PNGs 1080x1080 (texto sobre imagem escurecida) e monta um Reel 9:16 (slide sobre fundo borrado) com **musica sci-fi royalty-free** (sorteada de `assets/music/`).
 5. **Publicacao** — hospeda a midia no GitHub Pages (URLs publicas exigidas pela API) e publica via Graph API: **carrossel + Reel + Story** no Instagram e **foto de capa na Pagina do Facebook**.
+
+> **Musica do Reel:** coloque faixas royalty-free (sci-fi) em `assets/music/`.
+> Veja `assets/music/README.md`. Sem faixas, o Reel sai sem audio.
 
 ## Pre-requisitos
 

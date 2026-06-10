@@ -25,9 +25,11 @@ export const config = {
   fontFile: () =>
     optional("FONT_FILE", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
 
-  /** Voz e ritmo do Edge TTS usados na narracao do Reel. */
-  ttsVoice: () => optional("TTS_VOICE", "pt-BR-AntonioNeural"),
-  ttsRate: () => optional("TTS_RATE", "+8%"),
+  /**
+   * Pasta com as faixas de musica (mp3) usadas no Reel. Coloque trilhas
+   * ROYALTY-FREE estilo sci-fi aqui; a pipeline sorteia uma por Reel.
+   */
+  musicDir: () => optional("MUSIC_DIR", "assets/music"),
 
   /** Handle exibido no slide final (CTA) e usado na caption. */
   igHandle: () => optional("IG_HANDLE", "cmenegatti"),
@@ -60,9 +62,11 @@ export const SLIDE = {
   height: 1080,
 } as const;
 
-/** Dimensoes do Reel (vertical 9:16). */
+/** Dimensoes do Reel (vertical 9:16) e duracao de cada slide em segundos. */
 export const REEL = {
   width: 1080,
   height: 1920,
   fps: 30,
+  /** Segundos que cada slide fica na tela (10 slides * 4s = ~40s). */
+  slideSeconds: 4,
 } as const;

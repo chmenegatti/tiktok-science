@@ -4,8 +4,6 @@ export interface Slide {
   titulo: string;
   /** Corpo do slide (PT-BR). 1-3 frases curtas, didaticas. */
   corpo: string;
-  /** Narracao curta (PT-BR, ~8-12 palavras) usada no Reel. Versao falada do slide. */
-  narracao: string;
   /** Prompt para gerar a imagem de fundo. Em ingles (melhor p/ modelos de imagem). */
   prompt_imagem: string;
 }

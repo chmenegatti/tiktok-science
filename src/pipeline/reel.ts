@@ -1,8 +1,8 @@
 import { execFile } from "node:child_process";
-import { writeFile } from "node:fs/promises";
+import { readdir, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { promisify } from "node:util";
-import { REEL } from "../config.js";
+import { config, REEL } from "../config.js";
 
 const exec = promisify(execFile);
 
@@ -16,87 +16,97 @@ async function run(bin: string, args: string[]): Promise<string> {
   }
 }
 
-/** Duracao em segundos de um arquivo de audio via ffprobe. */
-async function duracao(audioPath: string): Promise<number> {
-  const out = await run("ffprobe", [
-    "-v", "error",
-    "-show_entries", "format=duration",
-    "-of", "default=noprint_wrappers=1:nokey=1",
-    audioPath,
-  ]);
-  const d = parseFloat(out.trim());
-  if (!isFinite(d) || d <= 0) throw new Error(`Duracao invalida em ${audioPath}`);
-  return d;
-}
+const AUDIO_EXT = [".mp3", ".m4a", ".aac", ".wav", ".ogg"];
 
-interface ReelAsset {
-  /** Slide final (PNG 1080x1080, ja com texto). */
-  slide: string;
-  /** Narracao do slide (mp3). */
-  audio: string;
+/** Sorteia uma faixa de musica da pasta configurada, ou null se nao houver. */
+async function escolherMusica(): Promise<string | null> {
+  const dir = config.musicDir();
+  let nomes: string[];
+  try {
+    nomes = (await readdir(dir)).filter((n) =>
+      AUDIO_EXT.includes(n.slice(n.lastIndexOf(".")).toLowerCase()),
+    );
+  } catch {
+    return null;
+  }
+  if (nomes.length === 0) return null;
+  return join(dir, nomes[Math.floor(Math.random() * nomes.length)]);
 }
 
 /**
  * Monta um Reel 1080x1920 a partir dos slides do carrossel:
  * cada slide quadrado fica centralizado sobre uma versao borrada/escurecida de
- * si mesmo (preenche o 9:16), e dura o tempo da narracao do slide. Os clipes
- * sao concatenados. Requer ffmpeg e ffprobe no PATH.
- *
- * Retorna o caminho do mp4.
+ * si mesmo, por `REEL.slideSeconds` segundos. Os clipes (mudos) sao concatenados
+ * e recebe uma trilha de musica (royalty-free) em loop com fade-out.
+ * Se nao houver musica na pasta, gera o Reel sem audio (com aviso).
+ * Requer ffmpeg no PATH. Retorna o caminho do mp4.
  */
-export async function montarReel(assets: ReelAsset[], workDir: string): Promise<string> {
-  const { width, height, fps } = REEL;
+export async function montarReel(slidePaths: string[], workDir: string): Promise<string> {
+  const { width, height, fps, slideSeconds } = REEL;
+
+  // 1. Clipe mudo por slide.
   const clips: string[] = [];
-
-  for (let i = 0; i < assets.length; i++) {
-    const { slide, audio } = assets[i];
-    const dur = await duracao(audio);
-
+  for (let i = 0; i < slidePaths.length; i++) {
     const clipPath = join(workDir, `reelclip_${String(i).padStart(2, "0")}.mp4`);
     const filter = [
-      // Fundo: o slide ampliado para cobrir 9:16, borrado e escurecido.
       `[0:v]scale=${width}:${height}:force_original_aspect_ratio=increase,`,
       `crop=${width}:${height},boxblur=20:2,eq=brightness=-0.25,setsar=1[bg];`,
-      // Frente: o slide quadrado em tamanho original.
       `[0:v]scale=${width}:${width},setsar=1[fg];`,
-      // Sobrepoe centralizado.
       `[bg][fg]overlay=(W-w)/2:(H-h)/2[v]`,
     ].join("");
 
     await run("ffmpeg", [
       "-y",
       "-loop", "1",
-      "-i", slide,
-      "-i", audio,
-      "-t", dur.toFixed(3),
+      "-i", slidePaths[i],
+      "-t", String(slideSeconds),
       "-filter_complex", filter,
       "-map", "[v]",
-      "-map", "1:a",
       "-c:v", "libx264",
       "-pix_fmt", "yuv420p",
       "-r", String(fps),
-      "-c:a", "aac",
-      "-b:a", "128k",
-      "-shortest",
       clipPath,
     ]);
     clips.push(clipPath);
   }
 
-  // Concatena (mesmos params -> stream copy). Paths relativos ao list -> basename.
+  // 2. Concatena os clipes mudos (mesmos params -> stream copy).
   const listPath = join(workDir, "reelclips.txt");
   await writeFile(listPath, clips.map((c) => `file '${basename(c)}'`).join("\n"));
+  const mudoPath = join(workDir, "reel_mudo.mp4");
+  await run("ffmpeg", [
+    "-y", "-f", "concat", "-safe", "0", "-i", listPath, "-c", "copy", mudoPath,
+  ]);
 
   const finalPath = join(workDir, "reel.mp4");
+  const total = slidePaths.length * slideSeconds;
+
+  // 3. Adiciona a musica (loop + fade-out), ou exporta sem audio se nao houver.
+  const musica = await escolherMusica();
+  if (!musica) {
+    console.warn(
+      `  [reel] sem musica em "${config.musicDir()}"; gerando Reel sem audio. ` +
+        `Adicione faixas royalty-free para melhorar o alcance.`,
+    );
+    await run("ffmpeg", ["-y", "-i", mudoPath, "-c", "copy", "-movflags", "+faststart", finalPath]);
+    return finalPath;
+  }
+
+  console.log(`  [reel] musica: ${basename(musica)}`);
+  const fadeStart = Math.max(0, total - 2);
   await run("ffmpeg", [
     "-y",
-    "-f", "concat",
-    "-safe", "0",
-    "-i", listPath,
-    "-c", "copy",
+    "-i", mudoPath,
+    "-stream_loop", "-1", "-i", musica,
+    "-map", "0:v",
+    "-map", "1:a",
+    "-c:v", "copy",
+    "-c:a", "aac",
+    "-b:a", "160k",
+    "-af", `afade=t=out:st=${fadeStart}:d=2`,
+    "-shortest",
     "-movflags", "+faststart",
     finalPath,
   ]);
-
   return finalPath;
 }

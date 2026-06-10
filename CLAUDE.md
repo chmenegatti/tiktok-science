@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Daily pipeline that generates science-curiosity content (PT-BR) and publishes it
 to Instagram via the Graph API for maximum reach: a **10-slide carousel** + a
-**Reel** (vertical video narrated via TTS) + a **Story** (the cover), and a
-**cross-post to the linked Facebook Page**. **Two posts per day** (slots 0 and
+**Reel** (vertical video set to royalty-free sci-fi music) + a **Story** (the
+cover), and a **cross-post to the linked Facebook Page**. **Two posts per day** (slots 0 and
 1), each a different topic, rotating through ~110 science areas.
 
 > History: this project started targeting TikTok (15s videos). It was pivoted to
@@ -49,11 +49,10 @@ composed, not coupled, so a stage can be swapped without touching the others:
 | Stage | Module | Key fn | Notes |
 |-------|--------|--------|-------|
 | Topic | `themes.ts` | `temaDoDia(date, slot)` | Deterministic: `(dayOfYear * POSTS_POR_DIA + slot) % AREAS.length`. Same date+slot -> same topic; the 2 daily slots get different topics. |
-| Script | `pipeline/script.ts` | `gerarRoteiro()` | Gemini `gemini-2.5-flash` via REST `fetch` (no SDK), **structured output** via `generationConfig.responseSchema`. Returns a `Roteiro` of exactly 10 `Slide`s. Prompt is reach-optimized (scroll-stopper cover, save-worthy body, per-slide `narracao` for the Reel, SEO+CTA caption, exactly 5 hashtags). |
+| Script | `pipeline/script.ts` | `gerarRoteiro()` | Gemini `gemini-2.5-flash` via REST `fetch` (no SDK), **structured output** via `generationConfig.responseSchema`. Returns a `Roteiro` of exactly 10 `Slide`s. Prompt is reach-optimized (scroll-stopper cover, save-worthy body, SEO+CTA caption, exactly 5 hashtags). |
 | Images | `pipeline/images.ts` | `gerarImagem()` | One background image per slide. Provider-abstracted (`config.imageProvider()`): `gemini` (default, reuses `GEMINI_API_KEY`, free tier) or `pollinations`. Slide stage scale+crops to 1080x1080. |
-| Narration | `pipeline/tts.ts` | `sintetizar()` | Edge TTS (free, `msedge-tts`), one mp3 per slide from `slide.narracao`. Used by the Reel. |
 | Slides | `pipeline/slides.ts` | `montarSlides()` | ffmpeg. Per-slide: scale+crop + darken (`drawbox`) + title/body/handle (`drawtext`) -> one PNG. |
-| Reel | `pipeline/reel.ts` | `montarReel()` | ffmpeg. Per-slide clip = square slide centered over a blurred/darkened 1080x1920 fill of itself, lasting its narration; concatenated to `reel.mp4` (H.264/AAC, faststart). |
+| Reel | `pipeline/reel.ts` | `montarReel()` | ffmpeg. Per-slide clip = square slide centered over a blurred/darkened 1080x1920 fill of itself, fixed `REEL.slideSeconds` each; concatenated, then a random royalty-free track from `config.musicDir()` is looped over it with a fade-out -> `reel.mp4` (H.264/AAC, faststart). No music in the folder -> silent Reel + warning. |
 | Publish | `pipeline/publish.ts` | `publicarConteudo()` | Hosts all media on GitHub Pages once, then Graph API: CAROUSEL + REELS + STORIES on Instagram, plus a photo cross-post to the linked Facebook Page. Each container polled to FINISHED before publish. |
 
 `Roteiro`/`Slide` shapes live in `src/types.ts` and are the contract between the
@@ -61,9 +60,9 @@ script stage and everything downstream. The `responseSchema` in `script.ts` must
 stay in sync with these types (note: Gemini schema uses UPPERCASE types and has
 no `additionalProperties`).
 
-Per-slide image generation + TTS narration run in parallel (`Promise.all`) in
-`index.ts`; the slide/Reel compositing stages are sequential (one ffmpeg
-invocation per slide/clip).
+Per-slide image generation runs in parallel (`Promise.all`) in `index.ts`; the
+slide/Reel compositing stages are sequential (one ffmpeg invocation per
+slide/clip).
 
 ## Important details
 
@@ -94,6 +93,9 @@ invocation per slide/clip).
 ## External dependencies / gotchas
 
 - `ffmpeg` must be installed system-wide.
+- Reel music: drop royalty-free tracks in `assets/music/` (gitignored). Without
+  any, the Reel is silent. Don't use copyrighted music — API-published Reels
+  can't use Instagram's licensed library and may be muted/blocked.
 - `FONT_FILE` env must point to a real font file or `drawtext` fails.
 - Instagram publish requires a Business/Creator account linked to a Facebook
   Page, a Meta app with the Instagram Graph API product, plus `IG_USER_ID` and a

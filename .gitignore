@@ -3,3 +3,6 @@ output/
 dist/
 .env
 *.log
+# Faixas de musica ficam locais (licenciamento); o README e versionado.
+assets/music/*
+!assets/music/README.md

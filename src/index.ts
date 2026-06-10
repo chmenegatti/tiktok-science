@@ -3,7 +3,6 @@ import { basename, join } from "node:path";
 import { dateStamp, temaDoDia } from "./themes.js";
 import { gerarRoteiro } from "./pipeline/script.js";
 import { gerarImagem } from "./pipeline/images.js";
-import { sintetizar } from "./pipeline/tts.js";
 import { montarSlides } from "./pipeline/slides.js";
 import { montarReel } from "./pipeline/reel.js";
 import { publicarConteudo } from "./pipeline/publish.js";
@@ -11,8 +10,8 @@ import type { ResultadoPipeline } from "./types.js";
 
 /**
  * Pipeline diaria:
- *   tema do dia -> roteiro (Gemini) -> imagens (IA) + narracao (TTS) por slide
- *   -> slides 1080x1080 + Reel 9:16 (ffmpeg)
+ *   tema do dia -> roteiro (Gemini) -> imagens de fundo (IA) por slide
+ *   -> slides 1080x1080 + Reel 9:16 com musica (ffmpeg)
  *   -> [opcional] carrossel + Reel + Story no Instagram + cross-post Facebook.
  *
  * Uso:
@@ -41,26 +40,21 @@ async function main(): Promise<ResultadoPipeline> {
   await writeFile(join(dir, "roteiro.json"), JSON.stringify(roteiro, null, 2));
   console.log(`  "${roteiro.titulo}" - ${roteiro.slides.length} slides`);
 
-  // 2. Imagem de fundo (IA) + narracao (TTS) por slide, em paralelo
-  console.log("Gerando imagens (IA) e narracao (TTS)...");
+  // 2. Imagem de fundo (IA) por slide, em paralelo
+  console.log("Gerando imagens de fundo (IA)...");
   const assets = await Promise.all(
     roteiro.slides.map(async (slide, i) => {
       const image = join(dir, `image_${String(i).padStart(2, "0")}.png`);
-      const audio = join(dir, `audio_${String(i).padStart(2, "0")}.mp3`);
-      await Promise.all([
-        gerarImagem(slide.prompt_imagem, image),
-        sintetizar(slide.narracao, audio),
-      ]);
-      return { image, audio, titulo: slide.titulo, corpo: slide.corpo };
+      await gerarImagem(slide.prompt_imagem, image);
+      return { image, titulo: slide.titulo, corpo: slide.corpo };
     }),
   );
 
-  // 3. Composicao dos slides (carrossel) e do Reel
+  // 3. Composicao dos slides (carrossel) e do Reel (com musica sci-fi)
   console.log("Compondo slides com ffmpeg...");
   const slidePaths = await montarSlides(assets, dir);
   console.log("Montando Reel com ffmpeg...");
-  const reelAssets = slidePaths.map((slide, i) => ({ slide, audio: assets[i].audio }));
-  const reelPath = await montarReel(reelAssets, dir);
+  const reelPath = await montarReel(slidePaths, dir);
 
   // 4. Caption + hashtags
   const captionPath = join(dir, "caption.txt");
