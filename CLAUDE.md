@@ -21,6 +21,7 @@ npm install            # install deps (also need ffmpeg on PATH)
 npm run today          # run pipeline, no publish -> output/<date>-<slot>/slide_*.png
 npm run publish        # run pipeline AND publish carousel to Instagram
 npm run publish -- --slot 1   # pick the post slot (0 = default/morning, 1 = afternoon)
+npm run publish -- --theme Games   # custom topic, overrides rotation (quote if spaces)
 npm run auth           # Instagram/Meta token helper (prints setup steps)
 npm run auth -- --token SHORT   # exchange short token for long-lived + list IG_USER_ID
 npm run refresh-token  # refresh IG_ACCESS_TOKEN in-place in .env (used by weekly timer)
@@ -48,7 +49,7 @@ composed, not coupled, so a stage can be swapped without touching the others:
 
 | Stage | Module | Key fn | Notes |
 |-------|--------|--------|-------|
-| Topic | `themes.ts` | `temaDoDia(date, slot)` | Deterministic: `(dayOfYear * POSTS_POR_DIA + slot) % AREAS.length`. Same date+slot -> same topic; the 2 daily slots get different topics. |
+| Topic | `themes.ts` | `temaDoDia(date, slot)` | Deterministic: `(dayOfYear * POSTS_POR_DIA + slot) % AREAS.length`. Same date+slot -> same topic; the 2 daily slots get different topics. `--theme <txt>` in `index.ts` overrides this with any string (output dir gets a `-<slug>` suffix). |
 | Script | `pipeline/script.ts` | `gerarRoteiro()` | Gemini `gemini-2.5-flash` via REST `fetch` (no SDK), **structured output** via `generationConfig.responseSchema`. Returns a `Roteiro` of exactly 10 `Slide`s. Prompt is reach-optimized (scroll-stopper cover, save-worthy body, SEO+CTA caption, exactly 5 hashtags). |
 | Images | `pipeline/images.ts` | `gerarImagem()` | One background image per slide. Provider-abstracted (`config.imageProvider()`): `gemini` (default, reuses `GEMINI_API_KEY`, free tier) or `pollinations`. Slide stage scale+crops to 1080x1080. |
 | Slides | `pipeline/slides.ts` | `montarSlides()` | ffmpeg. Per-slide: scale+crop + darken (`drawbox`) + title/body/handle (`drawtext`) -> one PNG. |

@@ -15,24 +15,32 @@ import type { ResultadoPipeline } from "./types.js";
  *   -> [opcional] carrossel + Reel + Story no Instagram + cross-post Facebook.
  *
  * Uso:
- *   npm run today               gera slides e Reel localmente (sem publicar)
- *   npm run publish             gera e publica tudo
- *   npm run publish -- --slot 1 escolhe o slot do dia (0 = manha, 1 = tarde)
+ *   npm run today                  gera slides e Reel localmente (sem publicar)
+ *   npm run publish                gera e publica tudo
+ *   npm run publish -- --slot 1    escolhe o slot do dia (0 = manha, 1 = tarde)
+ *   npm run publish -- --theme Games  usa um tema custom (ignora a rotacao)
  */
 async function main(): Promise<ResultadoPipeline> {
   const publicar = process.argv.includes("--publish");
   const si = process.argv.indexOf("--slot");
   const slot = si >= 0 ? Number(process.argv[si + 1]) : 0;
+  const ti = process.argv.indexOf("--theme");
+  const temaFlag = ti >= 0 ? process.argv[ti + 1] : undefined;
   const data = new Date();
-  // Id unico por post do dia (data + slot) para isolar pastas dos 2 posts diarios.
-  const stamp = `${dateStamp(data)}-${slot}`;
-  const tema = temaDoDia(data, slot);
+  // Tema: o fornecido em --theme (qualquer string), ou a rotacao do dia/slot.
+  const tema = temaFlag || temaDoDia(data, slot);
+  // Id unico do post. Inclui um slug do tema custom para nao sobrescrever os
+  // posts agendados do dia.
+  const slug = temaFlag
+    ? "-" + temaFlag.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+    : "";
+  const stamp = `${dateStamp(data)}-${slot}${slug}`;
   const dir = join("output", stamp);
   // Limpa assets de execucoes anteriores do mesmo post (evita arquivos orfaos).
   await rm(dir, { recursive: true, force: true });
   await mkdir(dir, { recursive: true });
 
-  console.log(`Tema do dia (slot ${slot}): ${tema}`);
+  console.log(temaFlag ? `Tema (--theme): ${tema}` : `Tema do dia (slot ${slot}): ${tema}`);
 
   // 1. Roteiro
   console.log("Gerando roteiro com Gemini...");

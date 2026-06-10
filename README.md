@@ -79,6 +79,18 @@ npm run publish -- --slot 0   # post da manha
 npm run publish -- --slot 1   # post da tarde
 ```
 
+### Tema custom
+
+`--theme` ignora a rotacao e usa o tema informado (qualquer texto; use aspas se
+tiver espacos). Util para posts avulsos:
+
+```bash
+npm run publish -- --theme Games
+npm run publish -- --theme "Ciencia de Dados"
+```
+
+A saida fica em `output/AAAA-MM-DD-<slot>-<slug>/`, isolada dos posts agendados.
+
 Saida e media de cada post ficam isoladas por `output/AAAA-MM-DD-<slot>/` e
 `docs/media/AAAA-MM-DD-<slot>/`.
 
