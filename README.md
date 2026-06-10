@@ -1,6 +1,6 @@
 # instagram-ciencia
 
-Gera **carrosseis de 10 slides** sobre curiosidades cientificas (de biologia a astrofisica) e publica no Instagram. Um tema diferente por dia.
+Gera **carrosseis de 10 slides** sobre curiosidades cientificas e publica no Instagram. **Dois posts por dia**, cada um com um tema diferente, rotacionando por ~110 areas (`src/themes.ts`).
 
 ## Pipeline
 
@@ -65,20 +65,35 @@ durante a execucao e removidos no final.
 Na publicacao, os slides finais sao copiados para `docs/media/AAAA-MM-DD/` e
 commitados para o GitHub Pages servir as URLs publicas.
 
+### Selecionar o post (slot)
+
+Cada dia tem 2 slots (`--slot 0` e `--slot 1`), cada um com um tema diferente:
+
+```bash
+npm run publish -- --slot 0   # post da manha
+npm run publish -- --slot 1   # post da tarde
+```
+
+Saida e media de cada post ficam isoladas por `output/AAAA-MM-DD-<slot>/` e
+`docs/media/AAAA-MM-DD-<slot>/`.
+
 ## Automacao diaria (systemd --user)
 
-Dois timers de usuario cuidam de tudo (arquivos em `~/.config/systemd/user/`):
+Tres timers de usuario cuidam de tudo (arquivos em `~/.config/systemd/user/`):
 
-- `instagram-ciencia.timer` — roda `npm run publish` todo dia as 09:00.
-- `instagram-ciencia-refresh.timer` — roda `npm run refresh-token` todo domingo
-  as 08:00, mantendo o token long-lived sempre dentro da validade de 60 dias.
+- `instagram-ciencia@0.timer` — `npm run publish -- --slot 0` todo dia as 09:00.
+- `instagram-ciencia@1.timer` — `npm run publish -- --slot 1` todo dia as 18:00.
+- `instagram-ciencia-refresh.timer` — `npm run refresh-token` todo domingo as
+  08:00, mantendo o token long-lived sempre dentro da validade de 60 dias.
+
+Os dois primeiros usam o servico templated `instagram-ciencia@.service` (`%i` = slot).
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now instagram-ciencia.timer instagram-ciencia-refresh.timer
+systemctl --user enable --now instagram-ciencia@0.timer instagram-ciencia@1.timer instagram-ciencia-refresh.timer
 loginctl enable-linger "$USER"      # roda mesmo sem login aberto
-systemctl --user list-timers 'instagram-ciencia*'   # confere os horarios
-journalctl --user -u instagram-ciencia.service -n 50 # logs da ultima execucao
+systemctl --user list-timers 'instagram-ciencia*'         # confere os horarios
+journalctl --user -u instagram-ciencia@0.service -n 50    # logs do post da manha
 ```
 
 O `git push` da publicacao usa HTTPS + o credential helper do `gh` (headless,

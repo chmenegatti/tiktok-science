@@ -18,15 +18,18 @@ import type { ResultadoPipeline } from "./types.js";
  */
 async function main(): Promise<ResultadoPipeline> {
   const publicar = process.argv.includes("--publish");
+  const si = process.argv.indexOf("--slot");
+  const slot = si >= 0 ? Number(process.argv[si + 1]) : 0;
   const data = new Date();
-  const stamp = dateStamp(data);
-  const tema = temaDoDia(data);
+  // Id unico por post do dia (data + slot) para isolar pastas dos 2 posts diarios.
+  const stamp = `${dateStamp(data)}-${slot}`;
+  const tema = temaDoDia(data, slot);
   const dir = join("output", stamp);
-  // Limpa assets de execucoes anteriores do mesmo dia (evita arquivos orfaos).
+  // Limpa assets de execucoes anteriores do mesmo post (evita arquivos orfaos).
   await rm(dir, { recursive: true, force: true });
   await mkdir(dir, { recursive: true });
 
-  console.log(`Tema do dia: ${tema}`);
+  console.log(`Tema do dia (slot ${slot}): ${tema}`);
 
   // 1. Roteiro
   console.log("Gerando roteiro com Gemini...");

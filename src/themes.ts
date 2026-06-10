@@ -19,7 +19,107 @@ export const AREAS = [
   "Botanica",
   "Cosmologia",
   "Zoologia",
+  "Matematica",
+  "Estatistica",
+  "Ciencia da Computacao",
+  "Inteligencia Artificial",
+  "Ciencia de Dados",
+  "Engenharia",
+  "Engenharia Aeroespacial",
+  "Engenharia Eletrica",
+  "Engenharia Mecanica",
+  "Engenharia Civil",
+  "Engenharia Quimica",
+  "Engenharia Biomedica",
+  "Robotica",
+  "Nanotecnologia",
+  "Ciencia dos Materiais",
+  "Bioquimica",
+  "Biofisica",
+  "Biotecnologia",
+  "Imunologia",
+  "Virologia",
+  "Parasitologia",
+  "Entomologia",
+  "Ornitologia",
+  "Ictiologia",
+  "Herpetologia",
+  "Primatologia",
+  "Etologia",
+  "Fisiologia",
+  "Anatomia",
+  "Embriologia",
+  "Citologia",
+  "Histologia",
+  "Epidemiologia",
+  "Farmacologia",
+  "Toxicologia",
+  "Patologia",
+  "Medicina",
+  "Veterinaria",
+  "Odontologia",
+  "Nutricao",
+  "Psicologia",
+  "Neuropsicologia",
+  "Psiquiatria",
+  "Psicanalise",
+  "Ciencias Cognitivas",
+  "Linguistica",
+  "Filologia",
+  "Antropologia",
+  "Arqueologia",
+  "Historia",
+  "Geografia",
+  "Cartografia",
+  "Demografia",
+  "Sociologia",
+  "Ciencia Politica",
+  "Relacoes Internacionais",
+  "Economia",
+  "Administracao",
+  "Contabilidade",
+  "Marketing",
+  "Direito",
+  "Criminologia",
+  "Filosofia",
+  "Etica",
+  "Logica",
+  "Teologia",
+  "Historia da Arte",
+  "Artes Visuais",
+  "Musica",
+  "Cinema",
+  "Literatura",
+  "Arquitetura",
+  "Urbanismo",
+  "Educacao",
+  "Pedagogia",
+  "Comunicacao",
+  "Jornalismo",
+  "Biblioteconomia",
+  "Arquivologia",
+  "Ciencia da Informacao",
+  "Meteorologia",
+  "Climatologia",
+  "Hidrologia",
+  "Espeleologia",
+  "Sismologia",
+  "Vulcanologia",
+  "Glaciologia",
+  "Limnologia",
+  "Agronomia",
+  "Silvicultura",
+  "Ciencias Ambientais",
+  "Desenvolvimento Sustentavel",
+  "Seguranca Cibernetica",
+  "Computacao Quantica",
+  "Blockchain",
+  "Realidade Virtual",
+  "Realidade Aumentada",
 ] as const;
+
+/** Quantidade de posts por dia (cada um com um tema diferente). */
+export const POSTS_POR_DIA = 2;
 
 export type Area = (typeof AREAS)[number];
 
@@ -30,9 +130,13 @@ function dayOfYear(date: Date): number {
   return Math.floor(diff / 86_400_000);
 }
 
-/** Tema do dia, rotacionando pela lista de areas. */
-export function temaDoDia(date = new Date()): Area {
-  return AREAS[dayOfYear(date) % AREAS.length];
+/**
+ * Tema de um post do dia, rotacionando pela lista de areas. Cada dia tem
+ * `POSTS_POR_DIA` slots (0, 1, ...) e cada slot cai numa area diferente.
+ * Deterministico: mesma data + slot -> mesma area.
+ */
+export function temaDoDia(date = new Date(), slot = 0): Area {
+  return AREAS[(dayOfYear(date) * POSTS_POR_DIA + slot) % AREAS.length];
 }
 
 /** Carimbo de data YYYY-MM-DD (UTC) usado para nomear a pasta de saida. */

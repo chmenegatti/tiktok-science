@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Daily pipeline that generates a 10-slide Instagram carousel about scientific
-curiosities (PT-BR) and publishes it to the feed via the Instagram Graph API.
-One rotating science topic per day.
+Daily pipeline that generates 10-slide Instagram carousels about scientific
+curiosities (PT-BR) and publishes them to the feed via the Instagram Graph API.
+**Two posts per day** (slots 0 and 1), each a different topic, rotating through
+~110 science areas.
 
 > History: this project started targeting TikTok (15s videos). It was pivoted to
 > Instagram carousels because TikTok's app-review (mandatory demo video for the
@@ -16,16 +17,19 @@ One rotating science topic per day.
 
 ```bash
 npm install            # install deps (also need ffmpeg on PATH)
-npm run today          # run pipeline, no publish -> output/<date>/slide_*.png
+npm run today          # run pipeline, no publish -> output/<date>-<slot>/slide_*.png
 npm run publish        # run pipeline AND publish carousel to Instagram
+npm run publish -- --slot 1   # pick the post slot (0 = default/morning, 1 = afternoon)
 npm run auth           # Instagram/Meta token helper (prints setup steps)
 npm run auth -- --token SHORT   # exchange short token for long-lived + list IG_USER_ID
 npm run refresh-token  # refresh IG_ACCESS_TOKEN in-place in .env (used by weekly timer)
 npm run typecheck      # tsc --noEmit
 ```
 
-Automation runs via two `systemd --user` timers in `~/.config/systemd/user/`:
-`instagram-ciencia.timer` (daily 09:00 -> publish) and
+Automation runs via three `systemd --user` timers in `~/.config/systemd/user/`:
+`instagram-ciencia@0.timer` (daily 09:00 -> `--slot 0`) and
+`instagram-ciencia@1.timer` (daily 18:00 -> `--slot 1`), both backed by the
+templated `instagram-ciencia@.service` (`%i` = slot), plus
 `instagram-ciencia-refresh.timer` (weekly -> token refresh). `git push` uses
 HTTPS + the `gh` credential helper so it works headless.
 
@@ -43,7 +47,7 @@ composed, not coupled, so a stage can be swapped without touching the others:
 
 | Stage | Module | Key fn | Notes |
 |-------|--------|--------|-------|
-| Topic | `themes.ts` | `temaDoDia()` | Deterministic: `dayOfYear % AREAS.length`. Same day -> same topic. |
+| Topic | `themes.ts` | `temaDoDia(date, slot)` | Deterministic: `(dayOfYear * POSTS_POR_DIA + slot) % AREAS.length`. Same date+slot -> same topic; the 2 daily slots get different topics. |
 | Script | `pipeline/script.ts` | `gerarRoteiro()` | Gemini `gemini-2.5-flash` via REST `fetch` (no SDK), **structured output** via `generationConfig.responseSchema`. Returns a `Roteiro` of exactly 10 `Slide`s. |
 | Images | `pipeline/images.ts` | `gerarImagem()` | One background image per slide. Provider-abstracted (`config.imageProvider()`): `gemini` (default, reuses `GEMINI_API_KEY`, free tier) or `pollinations` (no key, rate-limited). Slide stage scale+crops to 1080x1080, so source need not be square. |
 | Slides | `pipeline/slides.ts` | `montarSlides()` | ffmpeg via `child_process`. Per-slide: scale+crop + darken (`drawbox`) + title/body/handle (`drawtext`) -> one PNG. |
