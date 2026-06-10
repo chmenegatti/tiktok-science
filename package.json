@@ -1,0 +1,23 @@
+{
+  "name": "tiktok-ciencia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Gera videos de 15s sobre curiosidades cientificas e publica no TikTok diariamente.",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "today": "tsx src/index.ts",
+    "publish": "tsx src/index.ts --publish",
+    "auth": "tsx src/scripts/tiktok-auth.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "msedge-tts": "^2.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
