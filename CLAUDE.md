@@ -27,8 +27,8 @@ npm run typecheck      # tsc --noEmit
 ```
 
 Automation runs via three `systemd --user` timers in `~/.config/systemd/user/`:
-`instagram-ciencia@0.timer` (daily 09:00 -> `--slot 0`) and
-`instagram-ciencia@1.timer` (daily 18:00 -> `--slot 1`), both backed by the
+`instagram-ciencia@0.timer` (daily 08:00 -> `--slot 0`) and
+`instagram-ciencia@1.timer` (daily 12:00 -> `--slot 1`), both backed by the
 templated `instagram-ciencia@.service` (`%i` = slot), plus
 `instagram-ciencia-refresh.timer` (weekly -> token refresh). `git push` uses
 HTTPS + the `gh` credential helper so it works headless.

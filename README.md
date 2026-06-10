@@ -81,8 +81,8 @@ Saida e media de cada post ficam isoladas por `output/AAAA-MM-DD-<slot>/` e
 
 Tres timers de usuario cuidam de tudo (arquivos em `~/.config/systemd/user/`):
 
-- `instagram-ciencia@0.timer` — `npm run publish -- --slot 0` todo dia as 09:00.
-- `instagram-ciencia@1.timer` — `npm run publish -- --slot 1` todo dia as 18:00.
+- `instagram-ciencia@0.timer` — `npm run publish -- --slot 0` todo dia as 08:00.
+- `instagram-ciencia@1.timer` — `npm run publish -- --slot 1` todo dia as 12:00.
 - `instagram-ciencia-refresh.timer` — `npm run refresh-token` todo domingo as
   08:00, mantendo o token long-lived sempre dentro da validade de 60 dias.
 
