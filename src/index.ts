@@ -1,5 +1,5 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { mkdir, readdir, rm, unlink, writeFile } from "node:fs/promises";
+import { basename, join } from "node:path";
 import { dateStamp, temaDoDia } from "./themes.js";
 import { gerarRoteiro } from "./pipeline/script.js";
 import { gerarImagem } from "./pipeline/images.js";
@@ -66,7 +66,19 @@ async function main(): Promise<ResultadoPipeline> {
     console.log("\n(--publish nao informado: slides so foram gerados localmente.)");
   }
 
+  // 6. Limpeza: mantem so os slides finais e a caption; remove intermediarios
+  //    (imagens de fundo, textos de drawtext, roteiro.json).
+  await limpar(dir, slidePaths, captionPath);
+
   return { dir, roteiro, slidePaths, captionPath, mediaId };
+}
+
+/** Remove de `dir` tudo que nao seja um slide final ou a caption. */
+async function limpar(dir: string, slidePaths: string[], captionPath: string): Promise<void> {
+  const manter = new Set([...slidePaths, captionPath].map((p) => basename(p)));
+  for (const nome of await readdir(dir)) {
+    if (!manter.has(nome)) await unlink(join(dir, nome));
+  }
 }
 
 main().catch((err) => {

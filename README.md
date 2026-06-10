@@ -54,12 +54,13 @@ expira em ~60 dias — rode `npm run auth` de novo quando os posts comecarem a 4
 
 ## Saida
 
-Cada execucao cria `output/AAAA-MM-DD/` com:
+Ao fim, `output/AAAA-MM-DD/` contem apenas o necessario para o post:
 
-- `roteiro.json` — roteiro gerado
-- `image_*.png` — imagens de fundo por slide
-- `slide_*.png` — slides finais (imagem + texto)
+- `slide_*.png` — slides finais (imagem + texto), em ordem
 - `caption.txt` — legenda + hashtags do post
+
+Os intermediarios (roteiro, imagens de fundo, textos do drawtext) sao gerados
+durante a execucao e removidos no final.
 
 Na publicacao, os slides finais sao copiados para `docs/media/AAAA-MM-DD/` e
 commitados para o GitHub Pages servir as URLs publicas.

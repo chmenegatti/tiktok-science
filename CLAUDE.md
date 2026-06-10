@@ -66,8 +66,10 @@ slide compositing stage is sequential (one ffmpeg invocation per slide).
   `docs/media/<date>/`, commits + pushes, waits for the GitHub Pages build, and
   passes `${PUBLIC_BASE_URL}/media/<date>/slide_NN.png`. Old media is wiped each
   run to keep the repo lean.
-- **All output** goes to `output/<YYYY-MM-DD>/` (gitignored). `docs/media/` IS
-  committed (Pages must serve it).
+- **All output** goes to `output/<YYYY-MM-DD>/` (gitignored). A final cleanup
+  step (`limpar()` in `index.ts`) prunes the dir to just `slide_*.png` +
+  `caption.txt`, deleting intermediates (background images, drawtext `.txt`,
+  `roteiro.json`). `docs/media/` IS committed (Pages must serve it).
 - **Config** is read lazily through `config.*()` getters so a missing env var
   only errors when that stage actually runs.
 
