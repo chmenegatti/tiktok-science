@@ -29,6 +29,7 @@ const SCOPES = [
   "instagram_content_publish",
   "pages_show_list",
   "pages_read_engagement",
+  "pages_manage_posts", // necessario para o cross-post na Pagina do Facebook
   "business_management",
 ];
 
