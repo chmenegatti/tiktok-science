@@ -20,7 +20,16 @@ npm run today          # run pipeline, no publish -> output/<date>/slide_*.png
 npm run publish        # run pipeline AND publish carousel to Instagram
 npm run auth           # Instagram/Meta token helper (prints setup steps)
 npm run auth -- --token SHORT   # exchange short token for long-lived + list IG_USER_ID
+npm run refresh-token  # refresh IG_ACCESS_TOKEN in-place in .env (used by weekly timer)
 npm run typecheck      # tsc --noEmit
+```
+
+Automation runs via two `systemd --user` timers in `~/.config/systemd/user/`:
+`instagram-ciencia.timer` (daily 09:00 -> publish) and
+`instagram-ciencia-refresh.timer` (weekly -> token refresh). `git push` uses
+HTTPS + the `gh` credential helper so it works headless.
+
+```bash
 ```
 
 There is no test suite. Verification is manual: run `npm run today` and inspect

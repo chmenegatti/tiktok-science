@@ -1,3 +1,5 @@
+import { readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import { config } from "../config.js";
 
 /**
@@ -114,7 +116,31 @@ async function listarContas(token: string): Promise<void> {
   }
 }
 
+/**
+ * Renova o IG_ACCESS_TOKEN atual (long-lived) e reescreve a linha no .env.
+ * Tokens long-lived podem ser estendidos por +60 dias enquanto validos (>24h),
+ * entao rodar isso periodicamente mantem a automacao sem re-login manual.
+ */
+async function refreshToken(): Promise<void> {
+  const atual = config.instagram.accessToken(); // erra claro se ausente
+  const novo = await trocarToken(atual);
+
+  const envPath = join(process.cwd(), ".env");
+  const conteudo = await readFile(envPath, "utf8");
+  if (!/^IG_ACCESS_TOKEN=/m.test(conteudo)) {
+    throw new Error("Linha IG_ACCESS_TOKEN= nao encontrada no .env.");
+  }
+  const atualizado = conteudo.replace(/^IG_ACCESS_TOKEN=.*$/m, `IG_ACCESS_TOKEN=${novo}`);
+  await writeFile(envPath, atualizado);
+  console.log("IG_ACCESS_TOKEN atualizado no .env.");
+}
+
 async function main(): Promise<void> {
+  if (process.argv.includes("--refresh")) {
+    await refreshToken();
+    return;
+  }
+
   const i = process.argv.indexOf("--token");
   const shortToken = i >= 0 ? process.argv[i + 1] : undefined;
 

@@ -65,10 +65,22 @@ durante a execucao e removidos no final.
 Na publicacao, os slides finais sao copiados para `docs/media/AAAA-MM-DD/` e
 commitados para o GitHub Pages servir as URLs publicas.
 
-## Automacao diaria
+## Automacao diaria (systemd --user)
 
-Agende `npm run publish` via cron (ou systemd timer):
+Dois timers de usuario cuidam de tudo (arquivos em `~/.config/systemd/user/`):
 
-```cron
-0 9 * * *  cd /home/cesar/js/tiktok && /usr/bin/npm run publish >> output/cron.log 2>&1
+- `instagram-ciencia.timer` — roda `npm run publish` todo dia as 09:00.
+- `instagram-ciencia-refresh.timer` — roda `npm run refresh-token` todo domingo
+  as 08:00, mantendo o token long-lived sempre dentro da validade de 60 dias.
+
+```bash
+systemctl --user daemon-reload
+systemctl --user enable --now instagram-ciencia.timer instagram-ciencia-refresh.timer
+loginctl enable-linger "$USER"      # roda mesmo sem login aberto
+systemctl --user list-timers 'instagram-ciencia*'   # confere os horarios
+journalctl --user -u instagram-ciencia.service -n 50 # logs da ultima execucao
 ```
+
+O `git push` da publicacao usa HTTPS + o credential helper do `gh` (headless,
+sem ssh-agent). Para rodar manualmente uma vez agora: `npm run publish` ou
+`systemctl --user start instagram-ciencia.service`.

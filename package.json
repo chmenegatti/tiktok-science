@@ -9,6 +9,7 @@
     "today": "tsx src/index.ts",
     "publish": "tsx src/index.ts --publish",
     "auth": "tsx src/scripts/instagram-auth.ts",
+    "refresh-token": "tsx src/scripts/instagram-auth.ts --refresh",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
