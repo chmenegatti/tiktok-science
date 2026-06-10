@@ -1,6 +1,7 @@
 import { mkdir, readdir, rm, unlink, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { dateStamp, numeroEpisodio, rotuloEpisodio, temaDoDia } from "./themes.js";
+import { lerAssuntos, registrarAssunto } from "./historico.js";
 import { gerarRoteiro } from "./pipeline/script.js";
 import { gerarImagem } from "./pipeline/images.js";
 import { montarSlides } from "./pipeline/slides.js";
@@ -46,11 +47,14 @@ async function main(): Promise<ResultadoPipeline> {
   console.log(temaFlag ? `Tema (--theme): ${tema}` : `Tema do dia (slot ${slot}): ${tema}`);
   console.log(`Episodio da serie: ${episodio}`);
 
-  // 1. Roteiro
+  // 1. Roteiro. Passa os assuntos ja publicados para nunca repetir assunto,
+  // mesmo quando a area se repete na rotacao.
   console.log("Gerando roteiro com Gemini...");
-  const roteiro = await gerarRoteiro(tema, episodio);
+  const historico = await lerAssuntos();
+  const roteiro = await gerarRoteiro(tema, episodio, historico.map((h) => h.assunto));
   await writeFile(join(dir, "roteiro.json"), JSON.stringify(roteiro, null, 2));
   console.log(`  "${roteiro.titulo}" - ${roteiro.slides.length} slides`);
+  console.log(`  Assunto: ${roteiro.assunto}`);
 
   // 2. Imagem de fundo (IA) por slide, em paralelo
   console.log("Gerando imagens de fundo (IA)...");
@@ -79,6 +83,16 @@ async function main(): Promise<ResultadoPipeline> {
   // 5. Publicacao (opcional): carrossel + Reel + Story + Facebook
   let resultado: ResultadoPipeline["publicacao"];
   if (publicar) {
+    // Registra o assunto ANTES de publicar: o arquivo precisa existir quando o
+    // publish commita (ele adiciona data/ junto com docs/media). Se a
+    // publicacao falhar, o assunto fica "queimado" — aceitavel, o retry gera
+    // outro roteiro de qualquer forma.
+    await registrarAssunto({
+      data: dateStamp(data),
+      slot,
+      tema,
+      assunto: roteiro.assunto,
+    });
     console.log("Publicando no Instagram (carrossel + Reel + Story) e Facebook...");
     resultado = await publicarConteudo({
       slidePaths,

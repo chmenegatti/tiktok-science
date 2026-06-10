@@ -51,7 +51,8 @@ async function hospedar(paths: string[], stamp: string): Promise<Record<string, 
     urls[name] = `${base}/media/${stamp}/${name}`;
   }
 
-  await git(["add", "docs/media"]);
+  // data/ guarda o historico de assuntos (registrado antes do publish).
+  await git(["add", "docs/media", "data"]);
   await git(["commit", "-m", `Publica midia (${stamp})`]);
   await git(["push", "origin", "HEAD"]);
 

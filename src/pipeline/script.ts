@@ -25,7 +25,8 @@ Regras de conteudo:
   (5) CTA explicito: Curtir, Comentar, Compartilhar, Salvar e Seguir.
 - hashtags: EXATAMENTE 5, todas SEM o "#", altamente relevantes (especificas + de nicho, evite genericas demais). Inclua sempre "ciencia".
 - Conteudo cientificamente correto. Nada de pseudociencia. O gancho deve prometer exatamente o que o conteudo entrega (sem clickbait falso).
-- O perfil oficial e @${handle}. Sempre que citar o perfil (CTA, caption), use EXATAMENTE esse handle. NUNCA invente nome de perfil, serie, canal ou marca.`;
+- O perfil oficial e @${handle}. Sempre que citar o perfil (CTA, caption), use EXATAMENTE esse handle. NUNCA invente nome de perfil, serie, canal ou marca.
+- assunto: UMA frase curta e objetiva (max ~12 palavras) que identifica a curiosidade especifica escolhida (ex: "O Sol nunca vai virar um buraco negro"). E o registro interno usado para nunca repetir assunto na serie.`;
 
 // Schema no formato aceito pelo Gemini (subset do OpenAPI 3.0; tipos em MAIUSCULO,
 // sem additionalProperties). Forca saida JSON estruturada.
@@ -33,6 +34,7 @@ const SCHEMA = {
   type: "OBJECT",
   properties: {
     tema: { type: "STRING" },
+    assunto: { type: "STRING" },
     titulo: { type: "STRING" },
     slides: {
       type: "ARRAY",
@@ -50,16 +52,25 @@ const SCHEMA = {
     caption: { type: "STRING" },
     hashtags: { type: "ARRAY", items: { type: "STRING" } },
   },
-  required: ["tema", "titulo", "slides", "caption", "hashtags"],
-  propertyOrdering: ["tema", "titulo", "slides", "caption", "hashtags"],
+  required: ["tema", "assunto", "titulo", "slides", "caption", "hashtags"],
+  propertyOrdering: ["tema", "assunto", "titulo", "slides", "caption", "hashtags"],
 } as const;
 
 /**
  * Gera o roteiro do episodio do dia para uma area cientifica usando o Gemini.
  * `episodio` e o rotulo da serie (ex: "#001"), usado na caption e no CTA.
+ * `assuntosUsados` sao os assuntos ja publicados, proibidos de repetir.
  */
-export async function gerarRoteiro(tema: string, episodio: string): Promise<Roteiro> {
+export async function gerarRoteiro(
+  tema: string,
+  episodio: string,
+  assuntosUsados: string[] = [],
+): Promise<Roteiro> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${config.geminiKey()}`;
+
+  const proibidos = assuntosUsados.length
+    ? `\n\nASSUNTOS JA PUBLICADOS na serie (PROIBIDO repetir qualquer um deles ou variacoes proximas; escolha uma curiosidade DIFERENTE, mesmo que da mesma area):\n${assuntosUsados.map((a) => `- ${a}`).join("\n")}`
+    : "";
 
   const res = await fetch(url, {
     method: "POST",
@@ -71,7 +82,7 @@ export async function gerarRoteiro(tema: string, episodio: string): Promise<Rote
           role: "user",
           parts: [
             {
-              text: `Crie o episodio ${episodio} da serie. Area: ${tema}. Escolha UMA curiosidade especifica e impactante dentro dessa area.`,
+              text: `Crie o episodio ${episodio} da serie. Area: ${tema}. Escolha UMA curiosidade especifica e impactante dentro dessa area.${proibidos}`,
             },
           ],
         },

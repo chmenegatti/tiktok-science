@@ -12,6 +12,12 @@ export interface Slide {
 export interface Roteiro {
   /** Area cientifica do dia (ex: "Astrofisica"). */
   tema: string;
+  /**
+   * Frase curta identificando a curiosidade especifica escolhida (ex: "O Sol
+   * nunca vai virar um buraco negro"). Registrada em data/assuntos.json para
+   * a serie nunca repetir assunto, mesmo quando a area se repete.
+   */
+  assunto: string;
   /** Titulo curto e chamativo do post. */
   titulo: string;
   /** Slides em ordem. Primeiro = capa/gancho, ultimo = chamada para seguir. */
