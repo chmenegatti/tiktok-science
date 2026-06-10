@@ -49,7 +49,7 @@ composed, not coupled, so a stage can be swapped without touching the others:
 
 | Stage | Module | Key fn | Notes |
 |-------|--------|--------|-------|
-| Topic | `themes.ts` | `temaDoDia(date, slot)` | Deterministic: `(dayOfYear * POSTS_POR_DIA + slot) % AREAS.length`. Same date+slot -> same topic; the 2 daily slots get different topics. `--theme <txt>` in `index.ts` overrides this with any string (output dir gets a `-<slug>` suffix). |
+| Topic | `themes.ts` | `temaDoDia(date, slot)` | Deterministic: `(dayOfYear * POSTS_POR_DIA + slot) % AREAS.length`. Same date+slot -> same topic; the 2 daily slots get different topics. `--theme <txt>` in `index.ts` overrides this with any string (output dir gets a `-<slug>` suffix). Also `numeroEpisodio(date, slot)`: stateless series episode number (`#001`, `#002`, ...) counted from `SERIE_INICIO` (2026-06-11), 2/day — burned on slides (top-right badge), fed to the script prompt and mentioned in caption/CTA. |
 | Script | `pipeline/script.ts` | `gerarRoteiro()` | Gemini `gemini-2.5-flash` via REST `fetch` (no SDK), **structured output** via `generationConfig.responseSchema`. Returns a `Roteiro` of exactly 10 `Slide`s. Prompt is reach-optimized (scroll-stopper cover, save-worthy body, SEO+CTA caption, exactly 5 hashtags). |
 | Images | `pipeline/images.ts` | `gerarImagem()` | One background image per slide. Provider-abstracted (`config.imageProvider()`): `gemini` (default, reuses `GEMINI_API_KEY`, free tier) or `pollinations`. Slide stage scale+crops to 1080x1080. |
 | Slides | `pipeline/slides.ts` | `montarSlides()` | ffmpeg. Per-slide: scale+crop + darken (`drawbox`) + title/body/handle (`drawtext`) -> one PNG. |

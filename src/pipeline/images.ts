@@ -32,7 +32,7 @@ async function gerarImagemGemini(prompt: string, outPath: string): Promise<void>
           role: "user",
           parts: [
             {
-              text: `Generate a square 1:1 cinematic image, high detail, no text overlay. Subject: ${prompt}`,
+              text: `Generate a square 1:1 image. Style: cinematic editorial photography, dramatic volumetric lighting, deep dark moody background, high contrast, hyper detailed, 8k. Leave large dark clean areas for white text overlay. Absolutely no text, no watermark, no logo. Subject: ${prompt}`,
             },
           ],
         },
@@ -57,7 +57,7 @@ async function gerarImagemGemini(prompt: string, outPath: string): Promise<void>
 }
 
 async function gerarImagemPollinations(prompt: string, outPath: string): Promise<void> {
-  const full = `${prompt}. Square 1:1 composition, cinematic, high detail, no text`;
+  const full = `${prompt}. Square 1:1 composition, cinematic editorial photography, dramatic volumetric lighting, deep dark moody background, high contrast, hyper detailed, no text, no watermark, no logo`;
   const url = new URL(`https://image.pollinations.ai/prompt/${encodeURIComponent(full)}`);
   url.searchParams.set("width", String(SLIDE.width));
   url.searchParams.set("height", String(SLIDE.height));

@@ -139,6 +139,26 @@ export function temaDoDia(date = new Date(), slot = 0): Area {
   return AREAS[(dayOfYear(date) * POSTS_POR_DIA + slot) % AREAS.length];
 }
 
+/** Data (UTC) do episodio #001 da serie. Datas anteriores clampam em 1. */
+export const SERIE_INICIO = Date.UTC(2026, 5, 11); // 2026-06-11
+
+/**
+ * Numero do episodio da serie para uma data+slot. Deterministico e sem
+ * estado: derivado da data, mesmo dia+slot -> mesmo numero. Dois episodios
+ * por dia (slots 0 e 1). Se a pipeline falhar num dia, o numero "pula" —
+ * aceitavel em troca de nao precisar de contador persistido.
+ */
+export function numeroEpisodio(date = new Date(), slot = 0): number {
+  const dia = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const dias = Math.round((dia - SERIE_INICIO) / 86_400_000);
+  return Math.max(1, dias * POSTS_POR_DIA + slot + 1);
+}
+
+/** Rotulo do episodio para exibicao: 1 -> "#001". */
+export function rotuloEpisodio(n: number): string {
+  return `#${String(n).padStart(3, "0")}`;
+}
+
 /** Carimbo de data YYYY-MM-DD (UTC) usado para nomear a pasta de saida. */
 export function dateStamp(date = new Date()): string {
   return date.toISOString().slice(0, 10);

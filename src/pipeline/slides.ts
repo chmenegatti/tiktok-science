@@ -44,7 +44,8 @@ interface SlideAsset {
 /**
  * Compoe os slides 1080x1080 do carrossel:
  * - imagem de fundo (scale+crop) + escurecimento para legibilidade
- * - titulo no topo, corpo ao centro, handle no rodape (todos queimados)
+ * - badge do episodio no topo-direito (ex: "#001"), titulo no topo,
+ *   corpo ao centro, handle no rodape (todos queimados)
  * Cada slide vira um PNG. Requer ffmpeg no PATH.
  *
  * Retorna os caminhos dos PNGs em ordem.
@@ -52,6 +53,7 @@ interface SlideAsset {
 export async function montarSlides(
   slides: SlideAsset[],
   workDir: string,
+  episodio: string,
 ): Promise<string[]> {
   const { width, height } = SLIDE;
   const font = config.fontFile();
@@ -73,6 +75,10 @@ export async function montarSlides(
       `crop=${width}:${height},setsar=1,`,
       // Escurece a imagem inteira para o texto branco ficar legivel.
       `drawbox=x=0:y=0:w=iw:h=ih:color=black@0.45:t=fill,`,
+      // Badge da serie (topo-direito).
+      `drawtext=text='${episodio}':fontfile='${font}':fontsize=38:`,
+      `fontcolor=white@0.95:borderw=3:bordercolor=black@0.85:`,
+      `x=w-text_w-44:y=40,`,
       // Titulo (topo).
       `drawtext=textfile='${tituloPath}':fontfile='${font}':fontsize=64:`,
       `fontcolor=white:borderw=4:bordercolor=black@0.85:`,

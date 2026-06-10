@@ -1,6 +1,6 @@
 import { mkdir, readdir, rm, unlink, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
-import { dateStamp, temaDoDia } from "./themes.js";
+import { dateStamp, numeroEpisodio, rotuloEpisodio, temaDoDia } from "./themes.js";
 import { gerarRoteiro } from "./pipeline/script.js";
 import { gerarImagem } from "./pipeline/images.js";
 import { montarSlides } from "./pipeline/slides.js";
@@ -40,11 +40,15 @@ async function main(): Promise<ResultadoPipeline> {
   await rm(dir, { recursive: true, force: true });
   await mkdir(dir, { recursive: true });
 
+  // Numero do episodio da serie (derivado de data+slot; ver themes.ts).
+  const episodio = rotuloEpisodio(numeroEpisodio(data, slot));
+
   console.log(temaFlag ? `Tema (--theme): ${tema}` : `Tema do dia (slot ${slot}): ${tema}`);
+  console.log(`Episodio da serie: ${episodio}`);
 
   // 1. Roteiro
   console.log("Gerando roteiro com Gemini...");
-  const roteiro = await gerarRoteiro(tema);
+  const roteiro = await gerarRoteiro(tema, episodio);
   await writeFile(join(dir, "roteiro.json"), JSON.stringify(roteiro, null, 2));
   console.log(`  "${roteiro.titulo}" - ${roteiro.slides.length} slides`);
 
@@ -60,7 +64,7 @@ async function main(): Promise<ResultadoPipeline> {
 
   // 3. Composicao dos slides (carrossel) e do Reel (com musica sci-fi)
   console.log("Compondo slides com ffmpeg...");
-  const slidePaths = await montarSlides(assets, dir);
+  const slidePaths = await montarSlides(assets, dir, episodio);
   console.log("Montando Reel com ffmpeg...");
   const reelPath = await montarReel(slidePaths, dir);
 
