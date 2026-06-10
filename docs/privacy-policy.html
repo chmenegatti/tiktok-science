@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — tiktok-science</title>
+  <style>
+    body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 760px;
+           margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #eee; padding-bottom: .3rem; }
+    h2 { margin-top: 1.8rem; }
+    .updated { color: #666; font-style: italic; }
+    a { color: #0a66c2; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: June 10, 2026</p>
+
+  <h2>1. Overview</h2>
+  <p>This Privacy Policy describes how tiktok-science ("the Application") handles
+  data. The Application is a personal, self-hosted tool maintained by Cesar
+  Menegatti (GitHub: <a href="https://github.com/chmenegatti">chmenegatti</a>).
+  It runs under the control of its operator and is not offered as a hosted
+  service to third parties.</p>
+
+  <h2>2. Data We Collect</h2>
+  <p>The Application does <strong>not</strong> collect, store, or transmit
+  personal data about end users or third parties. It processes only:</p>
+  <ul>
+    <li><strong>API credentials</strong> supplied by the operator (Google Gemini,
+    TikTok, etc.), stored locally in a <code>.env</code> file on the operator's
+    machine and never committed to source control.</li>
+    <li><strong>Generated content</strong> (scripts, narration, images, videos)
+    written to a local <code>output/</code> directory.</li>
+  </ul>
+
+  <h2>3. How Data Is Used</h2>
+  <ul>
+    <li>API credentials are used solely to authenticate requests to their
+    respective third-party services.</li>
+    <li>TikTok access tokens are used only to upload generated videos to the
+    operator's own TikTok inbox as drafts.</li>
+  </ul>
+  <p>No data is sold, shared, or used for advertising or analytics.</p>
+
+  <h2>4. Data Storage and Retention</h2>
+  <p>All credentials and generated content remain on the operator's local
+  machine. The Application maintains no remote database or backend. Retention is
+  entirely under the operator's control; deleting local files removes the data.</p>
+
+  <h2>5. Third-Party Services</h2>
+  <p>When the Application calls third-party APIs, the data sent to those services
+  is governed by their own privacy policies:</p>
+  <ul>
+    <li><strong>Google Gemini</strong> — script and image generation.</li>
+    <li><strong>TikTok Content Posting API</strong> — video upload to the
+    operator's inbox.</li>
+    <li><strong>Edge TTS</strong> and image providers — narration and image
+    synthesis.</li>
+  </ul>
+  <p>The operator should review the privacy policies of these providers.</p>
+
+  <h2>6. TikTok Data</h2>
+  <p>The Application requests the <code>video.upload</code> scope only. It uses
+  the resulting access token exclusively to send videos to the operator's own
+  TikTok inbox as drafts. It does not read, collect, or store any data from
+  TikTok user accounts.</p>
+
+  <h2>7. Security</h2>
+  <p>Credentials are stored locally and excluded from version control via
+  <code>.gitignore</code>. The operator is responsible for securing their own
+  machine and credentials.</p>
+
+  <h2>8. Children's Privacy</h2>
+  <p>The Application is not directed to children and does not knowingly process
+  any personal data from children.</p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>This Privacy Policy may be updated at any time. The "Last updated" date above
+  reflects the most recent revision.</p>
+
+  <h2>10. Contact</h2>
+  <p>For questions regarding this Privacy Policy, contact Cesar Menegatti via
+  GitHub: <a href="https://github.com/chmenegatti">https://github.com/chmenegatti</a>.</p>
+</body>
+</html>
