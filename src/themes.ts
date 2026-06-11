@@ -139,8 +139,12 @@ export function temaDoDia(date = new Date(), slot = 0): Area {
   return AREAS[(dayOfYear(date) * POSTS_POR_DIA + slot) % AREAS.length];
 }
 
-/** Data (UTC) do episodio #001 da serie. Datas anteriores clampam em 1. */
-export const SERIE_INICIO = Date.UTC(2026, 5, 11); // 2026-06-11
+/**
+ * Data (UTC) de referencia da serie: o #001 saiu em 2026-06-10 (post avulso
+ * de Buracos Negros). Por isso o dia seguinte comeca em #002 (sem o "+1" na
+ * formula). Datas anteriores clampam em 1.
+ */
+export const SERIE_INICIO = Date.UTC(2026, 5, 10); // 2026-06-10
 
 /**
  * Numero do episodio da serie para uma data+slot. Deterministico e sem
@@ -151,7 +155,7 @@ export const SERIE_INICIO = Date.UTC(2026, 5, 11); // 2026-06-11
 export function numeroEpisodio(date = new Date(), slot = 0): number {
   const dia = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
   const dias = Math.round((dia - SERIE_INICIO) / 86_400_000);
-  return Math.max(1, dias * POSTS_POR_DIA + slot + 1);
+  return Math.max(1, dias * POSTS_POR_DIA + slot);
 }
 
 /** Rotulo do episodio para exibicao: 1 -> "#001". */
