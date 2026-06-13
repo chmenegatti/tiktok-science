@@ -18,12 +18,30 @@ async function git(args: string[]): Promise<void> {
   }
 }
 
-/** Espera uma URL responder 200. O build do Pages pode levar varios minutos. */
+/** True se nao ha mudancas staged (nada para commitar). */
+async function semMudancas(): Promise<boolean> {
+  try {
+    await exec("git", ["diff", "--cached", "--quiet"]);
+    return true; // exit 0 = sem diff staged
+  } catch {
+    return false; // exit 1 = ha mudancas
+  }
+}
+
+/**
+ * Espera uma URL ficar publica e AQUECE o cache do Cloudflare baixando o corpo
+ * inteiro (GET, nao HEAD). O fetcher da Meta falha (subcode 2207052) quando
+ * busca a midia com o cache do Cloudflare ainda frio; ao baixar o body aqui,
+ * garantimos que o Cloudflare ja tem o objeto cacheado quando a Meta busca.
+ */
 async function aguardarUrl(url: string, tentativas = 90): Promise<void> {
   for (let i = 0; i < tentativas; i++) {
     try {
-      const res = await fetch(url, { method: "HEAD", redirect: "follow" });
-      if (res.ok) return;
+      const res = await fetch(url, { method: "GET", redirect: "follow" });
+      if (res.ok) {
+        await res.arrayBuffer(); // consome o corpo -> popula o cache de borda
+        return;
+      }
     } catch {
       /* ainda nao no ar */
     }
@@ -44,16 +62,22 @@ async function hospedar(paths: string[], stamp: string): Promise<Record<string, 
   await mkdir(destDir, { recursive: true });
 
   const base = config.publicBaseUrl().replace(/\/$/, "");
+  // Cache-bust unico por execucao: a Meta cacheia URLs de midia (inclusive
+  // falhas de download). Um token novo a cada publish forca uma busca limpa e
+  // evita herdar um cache negativo de uma tentativa anterior que falhou.
+  const v = Date.now();
   const urls: Record<string, string> = {};
   for (const p of paths) {
     const name = basename(p);
     await copyFile(p, join(destDir, name));
-    urls[name] = `${base}/media/${stamp}/${name}`;
+    urls[name] = `${base}/media/${stamp}/${name}?v=${v}`;
   }
 
   // data/ guarda o historico de assuntos (registrado antes do publish).
   await git(["add", "docs/media", "data"]);
-  await git(["commit", "-m", `Publica midia (${stamp})`]);
+  // Em um republish da mesma midia nao ha nada novo para commitar; segue sem erro.
+  const limpo = await semMudancas();
+  if (!limpo) await git(["commit", "-m", `Publica midia (${stamp})`]);
   await git(["push", "origin", "HEAD"]);
 
   console.log("  Aguardando GitHub Pages publicar a midia...");
@@ -61,22 +85,60 @@ async function hospedar(paths: string[], stamp: string): Promise<Record<string, 
   return urls;
 }
 
-interface GraphResp {
-  id?: string;
-  error?: { message: string; type: string; code: number };
+interface GraphError {
+  message: string;
+  type: string;
+  code: number;
+  error_subcode?: number;
+  is_transient?: boolean;
 }
 
-/** POST na Graph API (Instagram, com o IG access token); retorna o id criado. */
-async function igPost(path: string, params: Record<string, string>): Promise<string> {
+interface GraphResp {
+  id?: string;
+  error?: GraphError;
+}
+
+/**
+ * Erros transientes da Graph API que valem retry: hiccups do servidor da Meta
+ * (`is_transient`/code 2) e falha ao baixar a midia recem-publicada quando o
+ * cache do Cloudflare/Pages ainda esta frio (subcode 2207052).
+ */
+function ehTransiente(err: GraphError): boolean {
+  return err.is_transient === true || err.code === 2 || err.error_subcode === 2207052;
+}
+
+/**
+ * POST na Graph API (Instagram, com o IG access token); retorna o id criado.
+ * Faz retry com backoff exponencial em erros transientes (Meta instavel ou
+ * midia ainda nao propagada). Uma unica falha transiente nao deve matar o post.
+ */
+async function igPost(
+  path: string,
+  params: Record<string, string>,
+  tentativas = 5,
+): Promise<string> {
   const ver = config.instagram.graphVersion();
   const url = `https://graph.facebook.com/${ver}/${path}`;
-  const body = new URLSearchParams({ ...params, access_token: config.instagram.accessToken() });
-  const res = await fetch(url, { method: "POST", body });
-  const data = (await res.json()) as GraphResp;
-  if (!res.ok || data.error || !data.id) {
-    throw new Error(`Graph API ${path} falhou: ${JSON.stringify(data.error ?? data)}`);
+  let ultimoErro = "";
+  for (let i = 0; i < tentativas; i++) {
+    const body = new URLSearchParams({ ...params, access_token: config.instagram.accessToken() });
+    let data: GraphResp;
+    try {
+      const res = await fetch(url, { method: "POST", body });
+      data = (await res.json()) as GraphResp;
+      if (res.ok && data.id && !data.error) return data.id;
+    } catch (e) {
+      // Falha de rede: trata como transiente.
+      data = { error: { message: String(e), type: "NetworkError", code: 2 } };
+    }
+    ultimoErro = JSON.stringify(data.error ?? data);
+    const transiente = data.error ? ehTransiente(data.error) : true;
+    if (!transiente || i === tentativas - 1) break;
+    const espera = 3000 * 2 ** i; // 3s, 6s, 12s, 24s
+    console.log(`  Graph API ${path} transiente (tentativa ${i + 1}/${tentativas}); retry em ${espera / 1000}s...`);
+    await new Promise((r) => setTimeout(r, espera));
   }
-  return data.id;
+  throw new Error(`Graph API ${path} falhou: ${ultimoErro}`);
 }
 
 /** Espera um container de midia terminar o processamento (status FINISHED). */

@@ -8,6 +8,7 @@
     "dev": "tsx src/index.ts",
     "today": "tsx src/index.ts",
     "publish": "tsx src/index.ts --publish",
+    "republish": "tsx src/republish.ts",
     "auth": "tsx src/scripts/instagram-auth.ts",
     "refresh-token": "tsx src/scripts/instagram-auth.ts --refresh",
     "typecheck": "tsc --noEmit"
