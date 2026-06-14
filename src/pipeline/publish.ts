@@ -191,14 +191,15 @@ async function publicarReel(videoUrl: string, caption: string): Promise<string> 
   return igPost(`${igUser()}/media_publish`, { creation_id: containerId });
 }
 
-/** Publica um Story de imagem. Retorna o media id. */
-async function publicarStory(imageUrl: string): Promise<string> {
-  console.log("  [story] publicando...");
+/** Publica um Story (video do Reel, ou imagem de capa como fallback). Retorna o media id. */
+async function publicarStory(media: { videoUrl?: string; imageUrl?: string }): Promise<string> {
+  console.log("  [story] criando container...");
   const containerId = await igPost(`${igUser()}/media`, {
     media_type: "STORIES",
-    image_url: imageUrl,
+    ...(media.videoUrl ? { video_url: media.videoUrl } : { image_url: media.imageUrl! }),
   });
   await aguardarContainer(containerId);
+  console.log("  [story] publicando...");
   return igPost(`${igUser()}/media_publish`, { creation_id: containerId });
 }
 
@@ -254,7 +255,7 @@ export interface PublicarResultado {
 /**
  * Hospeda a midia no GitHub Pages (uma vez) e publica:
  *   carrossel no feed; (opcional) Reel; (opcional) Story; (opcional) Facebook.
- * Reel e Story ampliam alcance; o Story usa a capa do carrossel.
+ * Reel e Story ampliam alcance; o Story usa o video do Reel (capa como fallback).
  */
 export async function publicarConteudo(args: PublicarArgs): Promise<PublicarResultado> {
   const { slidePaths, reelPath, caption, stamp } = args;
@@ -269,7 +270,11 @@ export async function publicarConteudo(args: PublicarArgs): Promise<PublicarResu
   if (reelPath) reelId = await publicarReel(urls[basename(reelPath)], caption);
 
   let storyId: string | undefined;
-  if (args.story) storyId = await publicarStory(slideUrls[0]);
+  if (args.story) {
+    storyId = await publicarStory(
+      reelPath ? { videoUrl: urls[basename(reelPath)] } : { imageUrl: slideUrls[0] },
+    );
+  }
 
   let facebookId: string | undefined;
   if (args.facebook) {
