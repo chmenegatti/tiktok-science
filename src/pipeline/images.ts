@@ -12,10 +12,39 @@ import { config, SLIDE } from "../config.js";
  * O estagio de slides faz scale+crop para 1080x1080 e sobrepoe o texto, entao a
  * imagem nao precisa sair perfeitamente quadrada nem conter texto.
  */
+/** Erro de provider que pode ser tentado de novo (5xx, 429, rede). */
+class ErroTransiente extends Error {}
+
+const RETRY_MAX = 4;
+const RETRY_BASE_MS = 2_000;
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Executa `fn`, tentando de novo em erros transientes (5xx/429/rede) com backoff
+ * exponencial. Erros nao-transientes (ex.: 400 prompt invalido) sobem na hora.
+ */
+async function comRetry<T>(fn: () => Promise<T>, label: string): Promise<T> {
+  for (let tentativa = 1; ; tentativa++) {
+    try {
+      return await fn();
+    } catch (err) {
+      const transiente = err instanceof ErroTransiente;
+      if (!transiente || tentativa >= RETRY_MAX) throw err;
+      const espera = RETRY_BASE_MS * 2 ** (tentativa - 1);
+      console.warn(
+        `${label}: tentativa ${tentativa}/${RETRY_MAX} falhou (${(err as Error).message.slice(0, 120)}); nova tentativa em ${espera}ms`,
+      );
+      await sleep(espera);
+    }
+  }
+}
+
 export async function gerarImagem(prompt: string, outPath: string): Promise<void> {
   const provider = config.imageProvider();
-  if (provider === "gemini") return gerarImagemGemini(prompt, outPath);
-  if (provider === "pollinations") return gerarImagemPollinations(prompt, outPath);
+  if (provider === "gemini") return comRetry(() => gerarImagemGemini(prompt, outPath), "Gemini image");
+  if (provider === "pollinations")
+    return comRetry(() => gerarImagemPollinations(prompt, outPath), "Pollinations");
   throw new Error(`IMAGE_PROVIDER "${provider}" nao suportado (use "gemini" ou "pollinations").`);
 }
 
@@ -39,10 +68,13 @@ async function gerarImagemGemini(prompt: string, outPath: string): Promise<void>
       ],
       generationConfig: { responseModalities: ["TEXT", "IMAGE"] },
     }),
+  }).catch((e) => {
+    throw new ErroTransiente(`Gemini image rede: ${e.message}`);
   });
 
   if (!res.ok) {
-    throw new Error(`Gemini image falhou (${res.status}): ${await res.text()}`);
+    const msg = `Gemini image falhou (${res.status}): ${await res.text()}`;
+    throw res.status >= 500 || res.status === 429 ? new ErroTransiente(msg) : new Error(msg);
   }
 
   const data = (await res.json()) as {
@@ -69,9 +101,12 @@ async function gerarImagemPollinations(prompt: string, outPath: string): Promise
   const res = await fetch(url, {
     headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     signal: AbortSignal.timeout(120_000),
+  }).catch((e) => {
+    throw new ErroTransiente(`Pollinations rede: ${e.message}`);
   });
   if (!res.ok) {
-    throw new Error(`Pollinations falhou (${res.status}): ${await res.text()}`);
+    const msg = `Pollinations falhou (${res.status}): ${await res.text()}`;
+    throw res.status >= 500 || res.status === 429 ? new ErroTransiente(msg) : new Error(msg);
   }
   await writeFile(outPath, Buffer.from(await res.arrayBuffer()));
 }
