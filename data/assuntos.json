@@ -70,5 +70,11 @@
     "slot": 0,
     "tema": "Desenvolvimento Sustentavel",
     "assunto": "Microrganismos podem 'devorar' poluentes tóxicos e limpar o ambiente."
+  },
+  {
+    "data": "2026-06-14",
+    "slot": 1,
+    "tema": "Seguranca Cibernetica",
+    "assunto": "A falha humana é o maior vetor de ataques cibernéticos bem-sucedidos."
   }
 ]
