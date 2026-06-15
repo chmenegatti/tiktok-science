@@ -82,5 +82,11 @@
     "slot": 0,
     "tema": "Computacao Quantica",
     "assunto": "A computação quântica alcançou feitos impossíveis para computadores clássicos."
+  },
+  {
+    "data": "2026-06-15",
+    "slot": 1,
+    "tema": "Blockchain",
+    "assunto": "A imutabilidade da blockchain impede que dados sejam alterados ou censurados."
   }
 ]
