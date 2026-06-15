@@ -76,5 +76,11 @@
     "slot": 1,
     "tema": "Seguranca Cibernetica",
     "assunto": "A falha humana é o maior vetor de ataques cibernéticos bem-sucedidos."
+  },
+  {
+    "data": "2026-06-15",
+    "slot": 0,
+    "tema": "Computacao Quantica",
+    "assunto": "A computação quântica alcançou feitos impossíveis para computadores clássicos."
   }
 ]
