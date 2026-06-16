@@ -88,5 +88,11 @@
     "slot": 1,
     "tema": "Blockchain",
     "assunto": "A imutabilidade da blockchain impede que dados sejam alterados ou censurados."
+  },
+  {
+    "data": "2026-06-16",
+    "slot": 0,
+    "tema": "Realidade Virtual",
+    "assunto": "A realidade virtual pode enganar o cérebro a aceitar um corpo virtual."
   }
 ]
