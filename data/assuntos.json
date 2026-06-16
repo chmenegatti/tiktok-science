@@ -94,5 +94,11 @@
     "slot": 0,
     "tema": "Realidade Virtual",
     "assunto": "A realidade virtual pode enganar o cérebro a aceitar um corpo virtual."
+  },
+  {
+    "data": "2026-06-16",
+    "slot": 1,
+    "tema": "Realidade Aumentada",
+    "assunto": "O cérebro reage a objetos de Realidade Aumentada como se fossem físicos."
   }
 ]
