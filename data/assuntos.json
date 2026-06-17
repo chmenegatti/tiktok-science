@@ -100,5 +100,11 @@
     "slot": 1,
     "tema": "Realidade Aumentada",
     "assunto": "O cérebro reage a objetos de Realidade Aumentada como se fossem físicos."
+  },
+  {
+    "data": "2026-06-17",
+    "slot": 0,
+    "tema": "Astrofisica",
+    "assunto": "Estrelas de nêutrons são os objetos mais densos do universo após buracos negros."
   }
 ]
