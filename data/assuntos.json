@@ -112,5 +112,11 @@
     "slot": 1,
     "tema": "Biologia",
     "assunto": "Alguns animais, como baratas, podem sobreviver sem a cabeça por um tempo."
+  },
+  {
+    "data": "2026-06-18",
+    "slot": 0,
+    "tema": "Quimica",
+    "assunto": "Catalisadores podem acelerar reações químicas em bilhões de vezes."
   }
 ]
