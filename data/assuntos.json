@@ -130,5 +130,11 @@
     "slot": 0,
     "tema": "Neurociencia",
     "assunto": "O cérebro pode facilmente criar e aceitar memórias falsas como reais."
+  },
+  {
+    "data": "2026-06-19",
+    "slot": 1,
+    "tema": "Geologia",
+    "assunto": "A Terra formará um novo supercontinente em milhões de anos."
   }
 ]
