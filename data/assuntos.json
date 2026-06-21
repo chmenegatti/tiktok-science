@@ -142,5 +142,11 @@
     "slot": 1,
     "tema": "Oceanografia",
     "assunto": "A Fossa das Marianas é mais profunda que o Monte Everest."
+  },
+  {
+    "data": "2026-06-21",
+    "slot": 0,
+    "tema": "Genetica",
+    "assunto": "O estilo de vida pode alterar a expressão dos genes sem mudar o DNA."
   }
 ]
