@@ -148,5 +148,11 @@
     "slot": 0,
     "tema": "Genetica",
     "assunto": "O estilo de vida pode alterar a expressão dos genes sem mudar o DNA."
+  },
+  {
+    "data": "2026-06-21",
+    "slot": 1,
+    "tema": "Ecologia",
+    "assunto": "Predadores de topo moldam ecossistemas inteiros através de cascatas tróficas."
   }
 ]
