@@ -172,5 +172,11 @@
     "slot": 0,
     "tema": "Botanica",
     "assunto": "Plantas se comunicam quimicamente para alertar sobre perigos."
+  },
+  {
+    "data": "2026-06-23",
+    "slot": 1,
+    "tema": "Cosmologia",
+    "assunto": "A maior parte do universo é composta por energia e matéria escura, invisíveis a nós."
   }
 ]
