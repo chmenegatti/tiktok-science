@@ -166,5 +166,11 @@
     "slot": 1,
     "tema": "Microbiologia",
     "assunto": "Nossos corpos abrigam mais células microbianas que humanas."
+  },
+  {
+    "data": "2026-06-23",
+    "slot": 0,
+    "tema": "Botanica",
+    "assunto": "Plantas se comunicam quimicamente para alertar sobre perigos."
   }
 ]
