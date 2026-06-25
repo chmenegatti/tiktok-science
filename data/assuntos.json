@@ -184,5 +184,11 @@
     "slot": 1,
     "tema": "Matematica",
     "assunto": "A alta probabilidade de aniversários coincidentes em grupos pequenos."
+  },
+  {
+    "data": "2026-06-25",
+    "slot": 0,
+    "tema": "Estatistica",
+    "assunto": "O Paradoxo de Simpson: tendências opostas surgem ao combinar dados."
   }
 ]
