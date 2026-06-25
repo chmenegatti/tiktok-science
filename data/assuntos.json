@@ -190,5 +190,11 @@
     "slot": 0,
     "tema": "Estatistica",
     "assunto": "O Paradoxo de Simpson: tendências opostas surgem ao combinar dados."
+  },
+  {
+    "data": "2026-06-25",
+    "slot": 1,
+    "tema": "Ciencia da Computacao",
+    "assunto": "Pequenas alterações em imagens enganam IAs com resultados absurdos."
   }
 ]
