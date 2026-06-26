@@ -202,5 +202,11 @@
     "slot": 0,
     "tema": "Inteligencia Artificial",
     "assunto": "IAs generativas inventam fatos convincentemente, um fenômeno chamado \"alucinação\"."
+  },
+  {
+    "data": "2026-06-26",
+    "slot": 1,
+    "tema": "Ciencia de Dados",
+    "assunto": "Algoritmos podem aprender e amplificar preconceitos humanos nos dados."
   }
 ]
