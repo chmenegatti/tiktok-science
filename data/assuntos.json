@@ -196,5 +196,11 @@
     "slot": 1,
     "tema": "Ciencia da Computacao",
     "assunto": "Pequenas alterações em imagens enganam IAs com resultados absurdos."
+  },
+  {
+    "data": "2026-06-26",
+    "slot": 0,
+    "tema": "Inteligencia Artificial",
+    "assunto": "IAs generativas inventam fatos convincentemente, um fenômeno chamado \"alucinação\"."
   }
 ]
