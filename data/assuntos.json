@@ -214,5 +214,11 @@
     "slot": 0,
     "tema": "Engenharia",
     "assunto": "Arranha-céus são construídos para balançar e resistir a terremotos e ventos."
+  },
+  {
+    "data": "2026-06-27",
+    "slot": 1,
+    "tema": "Engenharia Aeroespacial",
+    "assunto": "O lixo espacial é uma ameaça crescente e rápida para futuras missões."
   }
 ]
