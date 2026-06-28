@@ -220,5 +220,11 @@
     "slot": 1,
     "tema": "Engenharia Aeroespacial",
     "assunto": "O lixo espacial é uma ameaça crescente e rápida para futuras missões."
+  },
+  {
+    "data": "2026-06-28",
+    "slot": 0,
+    "tema": "Engenharia Eletrica",
+    "assunto": "Dispositivos em standby consomem eletricidade mesmo desligados ou em repouso."
   }
 ]
