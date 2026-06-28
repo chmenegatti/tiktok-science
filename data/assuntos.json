@@ -226,5 +226,11 @@
     "slot": 0,
     "tema": "Engenharia Eletrica",
     "assunto": "Dispositivos em standby consomem eletricidade mesmo desligados ou em repouso."
+  },
+  {
+    "data": "2026-06-28",
+    "slot": 1,
+    "tema": "Engenharia Mecanica",
+    "assunto": "Ligas com memória de forma podem \"lembrar\" e retornar à sua forma original."
   }
 ]
