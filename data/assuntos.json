@@ -232,5 +232,11 @@
     "slot": 1,
     "tema": "Engenharia Mecanica",
     "assunto": "Ligas com memória de forma podem \"lembrar\" e retornar à sua forma original."
+  },
+  {
+    "data": "2026-06-29",
+    "slot": 0,
+    "tema": "Engenharia Civil",
+    "assunto": "O concreto romano resistiu milênios por autocurar-se com cinza vulcânica."
   }
 ]
