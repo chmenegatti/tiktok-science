@@ -238,5 +238,11 @@
     "slot": 0,
     "tema": "Engenharia Civil",
     "assunto": "O concreto romano resistiu milênios por autocurar-se com cinza vulcânica."
+  },
+  {
+    "data": "2026-06-29",
+    "slot": 1,
+    "tema": "Engenharia Quimica",
+    "assunto": "O processo Haber-Bosch alimenta bilhões ao transformar nitrogênio do ar em fertilizantes."
   }
 ]
