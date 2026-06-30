@@ -250,5 +250,11 @@
     "slot": 0,
     "tema": "Engenharia Biomedica",
     "assunto": "Próteses robóticas controladas pela mente via interfaces cérebro-máquina."
+  },
+  {
+    "data": "2026-06-30",
+    "slot": 1,
+    "tema": "Robotica",
+    "assunto": "Robôs de materiais macios superam limites de máquinas rígidas."
   }
 ]
