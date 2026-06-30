@@ -244,5 +244,11 @@
     "slot": 1,
     "tema": "Engenharia Quimica",
     "assunto": "O processo Haber-Bosch alimenta bilhões ao transformar nitrogênio do ar em fertilizantes."
+  },
+  {
+    "data": "2026-06-30",
+    "slot": 0,
+    "tema": "Engenharia Biomedica",
+    "assunto": "Próteses robóticas controladas pela mente via interfaces cérebro-máquina."
   }
 ]
