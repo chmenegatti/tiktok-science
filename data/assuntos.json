@@ -256,5 +256,11 @@
     "slot": 1,
     "tema": "Robotica",
     "assunto": "Robôs de materiais macios superam limites de máquinas rígidas."
+  },
+  {
+    "data": "2026-07-01",
+    "slot": 0,
+    "tema": "Nanotecnologia",
+    "assunto": "Partículas quânticas (quantum dots) emitem cores precisas baseadas no tamanho."
   }
 ]
