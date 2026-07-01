@@ -262,5 +262,11 @@
     "slot": 0,
     "tema": "Nanotecnologia",
     "assunto": "Partículas quânticas (quantum dots) emitem cores precisas baseadas no tamanho."
+  },
+  {
+    "data": "2026-07-01",
+    "slot": 1,
+    "tema": "Ciencia dos Materiais",
+    "assunto": "Aerogel, o sólido mais leve e melhor isolante do mundo."
   }
 ]
