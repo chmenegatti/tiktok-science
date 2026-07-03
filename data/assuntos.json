@@ -286,5 +286,11 @@
     "slot": 0,
     "tema": "Biotecnologia",
     "assunto": "Órgãos de porcos geneticamente modificados podem ser transplantados para humanos."
+  },
+  {
+    "data": "2026-07-03",
+    "slot": 1,
+    "tema": "Imunologia",
+    "assunto": "A microbiota intestinal treina e comanda o sistema imunológico."
   }
 ]
