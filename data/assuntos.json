@@ -298,5 +298,11 @@
     "slot": 0,
     "tema": "Virologia",
     "assunto": "Vírus 'zumbis' podem ressurgir de gelo milenar e nos infectar."
+  },
+  {
+    "data": "2026-07-04",
+    "slot": 1,
+    "tema": "Parasitologia",
+    "assunto": "O parasita Toxoplasma gondii altera o comportamento de hospedeiros, como ratos e possivelmente humanos."
   }
 ]
