@@ -292,5 +292,11 @@
     "slot": 1,
     "tema": "Imunologia",
     "assunto": "A microbiota intestinal treina e comanda o sistema imunológico."
+  },
+  {
+    "data": "2026-07-04",
+    "slot": 0,
+    "tema": "Virologia",
+    "assunto": "Vírus 'zumbis' podem ressurgir de gelo milenar e nos infectar."
   }
 ]
