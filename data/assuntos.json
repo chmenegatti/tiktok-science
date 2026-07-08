@@ -346,5 +346,11 @@
     "slot": 0,
     "tema": "Fisiologia",
     "assunto": "O intestino possui um 'segundo cérebro' autônomo."
+  },
+  {
+    "data": "2026-07-08",
+    "slot": 1,
+    "tema": "Anatomia",
+    "assunto": "O esqueleto humano se renova completamente a cada ~10 anos."
   }
 ]
