@@ -358,5 +358,11 @@
     "slot": 0,
     "tema": "Embriologia",
     "assunto": "Alguns mamíferos pausam o desenvolvimento embrionário por meses."
+  },
+  {
+    "data": "2026-07-09",
+    "slot": 1,
+    "tema": "Citologia",
+    "assunto": "Células HeLa são \"imortais\" e revolucionaram a medicina e a bioética."
   }
 ]
