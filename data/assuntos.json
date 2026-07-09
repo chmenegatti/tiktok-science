@@ -352,5 +352,11 @@
     "slot": 1,
     "tema": "Anatomia",
     "assunto": "O esqueleto humano se renova completamente a cada ~10 anos."
+  },
+  {
+    "data": "2026-07-09",
+    "slot": 0,
+    "tema": "Embriologia",
+    "assunto": "Alguns mamíferos pausam o desenvolvimento embrionário por meses."
   }
 ]
