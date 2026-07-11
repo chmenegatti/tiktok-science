@@ -376,5 +376,11 @@
     "slot": 0,
     "tema": "Farmacologia",
     "assunto": "Venenos de serpentes são fonte de medicamentos inovadores e salvadores."
+  },
+  {
+    "data": "2026-07-11",
+    "slot": 1,
+    "tema": "Toxicologia",
+    "assunto": "A dose faz o veneno: água e sal podem ser letais em excesso."
   }
 ]
