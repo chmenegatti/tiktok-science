@@ -388,5 +388,11 @@
     "slot": 0,
     "tema": "Patologia",
     "assunto": "Proteínas 'zumbis' chamadas príons causam doenças cerebrais fatais e incuráveis."
+  },
+  {
+    "data": "2026-07-12",
+    "slot": 1,
+    "tema": "Medicina",
+    "assunto": "A dor é uma construção complexa do cérebro, não apenas uma sensação física."
   }
 ]
