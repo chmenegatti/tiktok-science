@@ -382,5 +382,11 @@
     "slot": 1,
     "tema": "Toxicologia",
     "assunto": "A dose faz o veneno: água e sal podem ser letais em excesso."
+  },
+  {
+    "data": "2026-07-12",
+    "slot": 0,
+    "tema": "Patologia",
+    "assunto": "Proteínas 'zumbis' chamadas príons causam doenças cerebrais fatais e incuráveis."
   }
 ]
