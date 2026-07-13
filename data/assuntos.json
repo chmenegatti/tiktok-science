@@ -400,5 +400,11 @@
     "slot": 0,
     "tema": "Veterinaria",
     "assunto": "Animais se automedicam instintivamente com plantas e outras substâncias naturais."
+  },
+  {
+    "data": "2026-07-13",
+    "slot": 1,
+    "tema": "Odontologia",
+    "assunto": "A capacidade limitada de regeneração dos dentes em comparação com os ossos."
   }
 ]
