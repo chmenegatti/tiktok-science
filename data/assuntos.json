@@ -406,5 +406,11 @@
     "slot": 1,
     "tema": "Odontologia",
     "assunto": "A capacidade limitada de regeneração dos dentes em comparação com os ossos."
+  },
+  {
+    "data": "2026-07-14",
+    "slot": 0,
+    "tema": "Nutricao",
+    "assunto": "O corpo gasta mais energia para digerir certos alimentos do que eles fornecem."
   }
 ]
