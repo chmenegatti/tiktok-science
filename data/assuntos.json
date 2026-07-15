@@ -418,5 +418,11 @@
     "slot": 0,
     "tema": "Neuropsicologia",
     "assunto": "O cérebro cria ativamente a realidade por predição, corrigindo-a com os sentidos."
+  },
+  {
+    "data": "2026-07-15",
+    "slot": 1,
+    "tema": "Psiquiatria",
+    "assunto": "O efeito placebo funciona mesmo quando o paciente sabe que está tomando um placebo."
   }
 ]
