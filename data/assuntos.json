@@ -424,5 +424,11 @@
     "slot": 1,
     "tema": "Psiquiatria",
     "assunto": "O efeito placebo funciona mesmo quando o paciente sabe que está tomando um placebo."
+  },
+  {
+    "data": "2026-07-16",
+    "slot": 0,
+    "tema": "Psicanalise",
+    "assunto": "Lapsos freudianos revelam pensamentos inconscientes."
   }
 ]
