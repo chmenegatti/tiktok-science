@@ -472,5 +472,11 @@
     "slot": 1,
     "tema": "Geografia",
     "assunto": "O campo magnético da Terra inverte seus polos regularmente ao longo do tempo geológico."
+  },
+  {
+    "data": "2026-07-20",
+    "slot": 0,
+    "tema": "Cartografia",
+    "assunto": "A projeção de Mercator distorce o tamanho real dos países no mapa-múndi."
   }
 ]
