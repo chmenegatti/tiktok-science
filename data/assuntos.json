@@ -478,5 +478,11 @@
     "slot": 0,
     "tema": "Cartografia",
     "assunto": "A projeção de Mercator distorce o tamanho real dos países no mapa-múndi."
+  },
+  {
+    "data": "2026-07-20",
+    "slot": 1,
+    "tema": "Demografia",
+    "assunto": "O crescimento populacional global está desacelerando e pode diminuir."
   }
 ]
