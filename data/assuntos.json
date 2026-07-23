@@ -508,5 +508,11 @@
     "slot": 1,
     "tema": "Economia",
     "assunto": "Aversão à perda: a dor de perder é maior que o prazer de ganhar."
+  },
+  {
+    "data": "2026-07-23",
+    "slot": 0,
+    "tema": "Administracao",
+    "assunto": "A falácia do custo afundado e a tendência de continuar investindo em algo por já ter investido, mesmo que irracional."
   }
 ]
