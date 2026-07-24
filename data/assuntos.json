@@ -520,5 +520,11 @@
     "slot": 1,
     "tema": "Contabilidade",
     "assunto": "O valor dos ativos intangíveis supera o dos físicos na economia moderna."
+  },
+  {
+    "data": "2026-07-24",
+    "slot": 0,
+    "tema": "Marketing",
+    "assunto": "O efeito âncora distorce decisões de compra e preços."
   }
 ]
