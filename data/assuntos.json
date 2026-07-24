@@ -526,5 +526,11 @@
     "slot": 0,
     "tema": "Marketing",
     "assunto": "O efeito âncora distorce decisões de compra e preços."
+  },
+  {
+    "data": "2026-07-24",
+    "slot": 1,
+    "tema": "Direito",
+    "assunto": "A inversão do ônus da prova em situações legais específicas."
   }
 ]
