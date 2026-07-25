@@ -538,5 +538,11 @@
     "slot": 0,
     "tema": "Criminologia",
     "assunto": "A memória humana é falha, tornando o testemunho ocular problemático em julgamentos."
+  },
+  {
+    "data": "2026-07-25",
+    "slot": 1,
+    "tema": "Filosofia",
+    "assunto": "O conceito filosófico de \"tábula rasa\" é refutado por descobertas modernas da neurociência."
   }
 ]
