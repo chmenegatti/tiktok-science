@@ -550,5 +550,11 @@
     "slot": 0,
     "tema": "Etica",
     "assunto": "Carros autônomos e o dilema ético do \"problema do bonde\"."
+  },
+  {
+    "data": "2026-07-26",
+    "slot": 1,
+    "tema": "Logica",
+    "assunto": "Os Teoremas da Incompletude de Gödel revelam os limites fundamentais da prova matemática."
   }
 ]
