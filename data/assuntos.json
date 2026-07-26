@@ -544,5 +544,11 @@
     "slot": 1,
     "tema": "Filosofia",
     "assunto": "O conceito filosófico de \"tábula rasa\" é refutado por descobertas modernas da neurociência."
+  },
+  {
+    "data": "2026-07-26",
+    "slot": 0,
+    "tema": "Etica",
+    "assunto": "Carros autônomos e o dilema ético do \"problema do bonde\"."
   }
 ]
