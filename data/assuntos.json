@@ -568,5 +568,11 @@
     "slot": 1,
     "tema": "Historia da Arte",
     "assunto": "A cor original vibrante das estátuas gregas e romanas."
+  },
+  {
+    "data": "2026-07-28",
+    "slot": 0,
+    "tema": "Artes Visuais",
+    "assunto": "A camera obscura e seu uso secreto por mestres da pintura para criar realismo."
   }
 ]
