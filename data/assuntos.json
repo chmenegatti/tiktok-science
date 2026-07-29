@@ -586,5 +586,11 @@
     "slot": 0,
     "tema": "Cinema",
     "assunto": "O \"vale da estranheza\" explica por que CGI quase humano nos incomoda."
+  },
+  {
+    "data": "2026-07-29",
+    "slot": 1,
+    "tema": "Literatura",
+    "assunto": "A maioria dos livros famosos escritos por celebridades tem um escritor fantasma."
   }
 ]
