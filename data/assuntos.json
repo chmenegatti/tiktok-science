@@ -610,5 +610,11 @@
     "slot": 0,
     "tema": "Educacao",
     "assunto": "O sono é essencial para consolidar memórias e otimizar a aprendizagem."
+  },
+  {
+    "data": "2026-07-31",
+    "slot": 1,
+    "tema": "Pedagogia",
+    "assunto": "Expectativas dos professores influenciam diretamente o desempenho dos alunos."
   }
 ]
