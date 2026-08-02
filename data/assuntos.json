@@ -628,5 +628,11 @@
     "slot": 1,
     "tema": "Jornalismo",
     "assunto": "A crise do jornalismo local criou \"desertos de notícias\" em milhões de comunidades."
+  },
+  {
+    "data": "2026-08-02",
+    "slot": 0,
+    "tema": "Biblioteconomia",
+    "assunto": "O risco de perdermos toda a informação digital em algumas décadas (Digital Dark Age)."
   }
 ]
