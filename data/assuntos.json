@@ -652,5 +652,11 @@
     "slot": 1,
     "tema": "Meteorologia",
     "assunto": "Fenômenos luminosos transientes (sprites, jatos e elfos) acima das tempestades."
+  },
+  {
+    "data": "2026-08-04",
+    "slot": 0,
+    "tema": "Climatologia",
+    "assunto": "O colapso da Corrente do Golfo pode mudar drasticamente o clima da Europa."
   }
 ]
