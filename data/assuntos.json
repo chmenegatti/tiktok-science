@@ -676,5 +676,11 @@
     "slot": 1,
     "tema": "Sismologia",
     "assunto": "Terremotos podem durar meses sem serem sentidos na superfície."
+  },
+  {
+    "data": "2026-08-06",
+    "slot": 0,
+    "tema": "Vulcanologia",
+    "assunto": "A maioria dos vulcões da Terra está escondida no fundo do oceano."
   }
 ]
