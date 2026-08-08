@@ -700,5 +700,11 @@
     "slot": 1,
     "tema": "Agronomia",
     "assunto": "A importância da vida microbiana em um grama de solo saudável."
+  },
+  {
+    "data": "2026-08-08",
+    "slot": 0,
+    "tema": "Silvicultura",
+    "assunto": "As árvores se comunicam e compartilham recursos via uma rede subterrânea de fungos."
   }
 ]
