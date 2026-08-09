@@ -718,5 +718,11 @@
     "slot": 0,
     "tema": "Desenvolvimento Sustentavel",
     "assunto": "Cidades Esponja: infraestrutura verde que absorve e reutiliza água da chuva para resiliência urbana."
+  },
+  {
+    "data": "2026-08-09",
+    "slot": 1,
+    "tema": "Seguranca Cibernetica",
+    "assunto": "O mercado secreto e bilionário de vulnerabilidades 'zero-day' em software."
   }
 ]
