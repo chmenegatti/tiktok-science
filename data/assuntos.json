@@ -724,5 +724,11 @@
     "slot": 1,
     "tema": "Seguranca Cibernetica",
     "assunto": "O mercado secreto e bilionário de vulnerabilidades 'zero-day' em software."
+  },
+  {
+    "data": "2026-08-10",
+    "slot": 0,
+    "tema": "Computacao Quantica",
+    "assunto": "Computadores quânticos podem quebrar os sistemas de criptografia que protegem a internet."
   }
 ]
