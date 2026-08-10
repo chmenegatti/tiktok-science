@@ -730,5 +730,11 @@
     "slot": 0,
     "tema": "Computacao Quantica",
     "assunto": "Computadores quânticos podem quebrar os sistemas de criptografia que protegem a internet."
+  },
+  {
+    "data": "2026-08-10",
+    "slot": 1,
+    "tema": "Blockchain",
+    "assunto": "O ataque de 51% pode comprometer a segurança e a integridade de uma blockchain."
   }
 ]
