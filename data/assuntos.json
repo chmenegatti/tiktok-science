@@ -736,5 +736,11 @@
     "slot": 1,
     "tema": "Blockchain",
     "assunto": "O ataque de 51% pode comprometer a segurança e a integridade de uma blockchain."
+  },
+  {
+    "data": "2026-08-11",
+    "slot": 0,
+    "tema": "Realidade Virtual",
+    "assunto": "A Realidade Virtual pode aliviar a dor física ao distrair o cérebro."
   }
 ]
