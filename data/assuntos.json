@@ -742,5 +742,11 @@
     "slot": 0,
     "tema": "Realidade Virtual",
     "assunto": "A Realidade Virtual pode aliviar a dor física ao distrair o cérebro."
+  },
+  {
+    "data": "2026-08-11",
+    "slot": 1,
+    "tema": "Realidade Aumentada",
+    "assunto": "A Realidade Aumentada pode revelar informações invisíveis aos olhos humanos."
   }
 ]
