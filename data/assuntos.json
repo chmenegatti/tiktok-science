@@ -748,5 +748,11 @@
     "slot": 1,
     "tema": "Realidade Aumentada",
     "assunto": "A Realidade Aumentada pode revelar informações invisíveis aos olhos humanos."
+  },
+  {
+    "data": "2026-08-12",
+    "slot": 0,
+    "tema": "Astrofisica",
+    "assunto": "Planetas órfãos vagam pelo espaço sem nenhuma estrela para orbitar."
   }
 ]
