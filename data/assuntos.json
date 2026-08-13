@@ -766,5 +766,11 @@
     "slot": 0,
     "tema": "Quimica",
     "assunto": "Superácidos são tão fortes que conseguem dissolver materiais considerados inertes."
+  },
+  {
+    "data": "2026-08-13",
+    "slot": 1,
+    "tema": "Fisica",
+    "assunto": "Materiais supercondutores permitem levitação quântica e condução sem resistência."
   }
 ]
