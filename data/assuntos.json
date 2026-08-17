@@ -802,5 +802,11 @@
     "slot": 0,
     "tema": "Astronomia",
     "assunto": "Uma misteriosa anomalia gravitacional puxa nossa galáxia e outras no universo."
+  },
+  {
+    "data": "2026-08-17",
+    "slot": 1,
+    "tema": "Microbiologia",
+    "assunto": "Microrganismos extremófilos prosperam em ambientes extremos da Terra."
   }
 ]
