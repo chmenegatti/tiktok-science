@@ -814,5 +814,11 @@
     "slot": 0,
     "tema": "Zoologia",
     "assunto": "O camarão-pistola cria bolha de plasma mais quente que o Sol."
+  },
+  {
+    "data": "2026-08-19",
+    "slot": 1,
+    "tema": "Matematica",
+    "assunto": "A lei de Benford revela padrões estranhos em dados numéricos e fraudes."
   }
 ]
