@@ -820,5 +820,11 @@
     "slot": 1,
     "tema": "Matematica",
     "assunto": "A lei de Benford revela padrões estranhos em dados numéricos e fraudes."
+  },
+  {
+    "data": "2026-08-20",
+    "slot": 0,
+    "tema": "Estatistica",
+    "assunto": "Como a 'regressão à média' explica desempenhos extremos inesperados."
   }
 ]
