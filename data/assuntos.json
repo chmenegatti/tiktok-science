@@ -832,5 +832,11 @@
     "slot": 1,
     "tema": "Ciencia da Computacao",
     "assunto": "O Problema da Parada: um limite fundamental que computadores não conseguem resolver."
+  },
+  {
+    "data": "2026-08-21",
+    "slot": 0,
+    "tema": "Inteligencia Artificial",
+    "assunto": "IA da AlphaFold resolveu o enigma secular do dobramento de proteínas."
   }
 ]
