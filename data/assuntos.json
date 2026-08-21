@@ -838,5 +838,11 @@
     "slot": 0,
     "tema": "Inteligencia Artificial",
     "assunto": "IA da AlphaFold resolveu o enigma secular do dobramento de proteínas."
+  },
+  {
+    "data": "2026-08-21",
+    "slot": 1,
+    "tema": "Ciencia de Dados",
+    "assunto": "A quantidade colossal de dados que cada pessoa gera diariamente sem perceber."
   }
 ]
