@@ -844,5 +844,11 @@
     "slot": 1,
     "tema": "Ciencia de Dados",
     "assunto": "A quantidade colossal de dados que cada pessoa gera diariamente sem perceber."
+  },
+  {
+    "data": "2026-08-24",
+    "slot": 0,
+    "tema": "Engenharia Civil",
+    "assunto": "Mega-pêndulos de arranha-céus gigantes evitam desabamentos e enjoos."
   }
 ]
