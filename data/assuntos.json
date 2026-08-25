@@ -862,5 +862,11 @@
     "slot": 0,
     "tema": "Engenharia Biomedica",
     "assunto": "A bioimpressão 3D está revolucionando a medicina, criando tecidos e órgãos funcionais."
+  },
+  {
+    "data": "2026-08-25",
+    "slot": 1,
+    "tema": "Robotica",
+    "assunto": "Enxames de robôs simples exibem inteligência coletiva complexa."
   }
 ]
