@@ -856,5 +856,11 @@
     "slot": 1,
     "tema": "Engenharia Quimica",
     "assunto": "MOFs: materiais com superfície interna gigantesca para armazenar gases e filtrar poluentes."
+  },
+  {
+    "data": "2026-08-25",
+    "slot": 0,
+    "tema": "Engenharia Biomedica",
+    "assunto": "A bioimpressão 3D está revolucionando a medicina, criando tecidos e órgãos funcionais."
   }
 ]
