@@ -868,5 +868,11 @@
     "slot": 1,
     "tema": "Robotica",
     "assunto": "Enxames de robôs simples exibem inteligência coletiva complexa."
+  },
+  {
+    "data": "2026-08-26",
+    "slot": 0,
+    "tema": "Nanotecnologia",
+    "assunto": "Nanobots para tratamento de doenças."
   }
 ]
