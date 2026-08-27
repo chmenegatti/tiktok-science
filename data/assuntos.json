@@ -880,5 +880,11 @@
     "slot": 1,
     "tema": "Ciencia dos Materiais",
     "assunto": "Materiais que se consertam sozinhos para durar mais."
+  },
+  {
+    "data": "2026-08-27",
+    "slot": 0,
+    "tema": "Bioquimica",
+    "assunto": "A morte celular programada (apoptose) é essencial para a vida e saúde."
   }
 ]
