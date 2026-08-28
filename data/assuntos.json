@@ -892,5 +892,11 @@
     "slot": 1,
     "tema": "Biofisica",
     "assunto": "A teia de aranha é mais forte que aço em proporção e super elástica."
+  },
+  {
+    "data": "2026-08-28",
+    "slot": 0,
+    "tema": "Biotecnologia",
+    "assunto": "A tecnologia CRISPR pode reverter doenças genéticas com precisão."
   }
 ]
