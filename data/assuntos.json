@@ -898,5 +898,11 @@
     "slot": 0,
     "tema": "Biotecnologia",
     "assunto": "A tecnologia CRISPR pode reverter doenças genéticas com precisão."
+  },
+  {
+    "data": "2026-08-28",
+    "slot": 1,
+    "tema": "Imunologia",
+    "assunto": "A terapia CAR-T reprograma células imunológicas para combater o câncer."
   }
 ]
