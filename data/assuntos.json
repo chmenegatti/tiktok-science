@@ -910,5 +910,11 @@
     "slot": 0,
     "tema": "Virologia",
     "assunto": "Vírus podem curar infecções bacterianas resistentes a antibióticos."
+  },
+  {
+    "data": "2026-08-29",
+    "slot": 1,
+    "tema": "Parasitologia",
+    "assunto": "O parasita Sacculina carcini transforma caranguejos em 'mães zumbis' para seus ovos."
   }
 ]
