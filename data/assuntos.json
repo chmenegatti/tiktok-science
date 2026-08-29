@@ -904,5 +904,11 @@
     "slot": 1,
     "tema": "Imunologia",
     "assunto": "A terapia CAR-T reprograma células imunológicas para combater o câncer."
+  },
+  {
+    "data": "2026-08-29",
+    "slot": 0,
+    "tema": "Virologia",
+    "assunto": "Vírus podem curar infecções bacterianas resistentes a antibióticos."
   }
 ]
