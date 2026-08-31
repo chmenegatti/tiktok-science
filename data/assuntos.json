@@ -928,5 +928,11 @@
     "slot": 1,
     "tema": "Ornitologia",
     "assunto": "A incrível capacidade do pássaro-lira de imitar qualquer som, de máquinas a outros animais."
+  },
+  {
+    "data": "2026-08-31",
+    "slot": 0,
+    "tema": "Ictiologia",
+    "assunto": "O tubarão da Groenlândia vive por séculos, sendo o vertebrado mais longevo."
   }
 ]
