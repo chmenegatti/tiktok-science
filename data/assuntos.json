@@ -934,5 +934,11 @@
     "slot": 0,
     "tema": "Ictiologia",
     "assunto": "O tubarão da Groenlândia vive por séculos, sendo o vertebrado mais longevo."
+  },
+  {
+    "data": "2026-08-31",
+    "slot": 1,
+    "tema": "Herpetologia",
+    "assunto": "Algumas tartarugas respiram pela cloaca, especialmente durante a hibernação aquática."
   }
 ]
