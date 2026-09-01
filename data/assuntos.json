@@ -940,5 +940,11 @@
     "slot": 1,
     "tema": "Herpetologia",
     "assunto": "Algumas tartarugas respiram pela cloaca, especialmente durante a hibernação aquática."
+  },
+  {
+    "data": "2026-09-01",
+    "slot": 0,
+    "tema": "Primatologia",
+    "assunto": "Macacos-prego rejeitam recompensas desiguais por tarefas iguais."
   }
 ]
