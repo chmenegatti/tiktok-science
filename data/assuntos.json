@@ -964,5 +964,11 @@
     "slot": 1,
     "tema": "Anatomia",
     "assunto": "O ácido estomacal humano é forte o suficiente para dissolver lâminas de barbear."
+  },
+  {
+    "data": "2026-09-03",
+    "slot": 0,
+    "tema": "Embriologia",
+    "assunto": "Embriões humanos desenvolvem estruturas similares a guelras."
   }
 ]
