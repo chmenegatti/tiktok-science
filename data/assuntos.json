@@ -976,5 +976,11 @@
     "slot": 1,
     "tema": "Citologia",
     "assunto": "Células zumbis (senescentes) e seu papel no envelhecimento e doenças."
+  },
+  {
+    "data": "2026-09-04",
+    "slot": 0,
+    "tema": "Histologia",
+    "assunto": "Células da glia são mais numerosas e cruciais para o cérebro que os neurônios."
   }
 ]
