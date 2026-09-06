@@ -994,5 +994,11 @@
     "slot": 0,
     "tema": "Patologia",
     "assunto": "A inflamação crônica silenciosa causa doenças graves e envelhecimento."
+  },
+  {
+    "data": "2026-09-06",
+    "slot": 1,
+    "tema": "Medicina",
+    "assunto": "O corpo humano detecta e elimina milhares de células cancerosas todos os dias."
   }
 ]
