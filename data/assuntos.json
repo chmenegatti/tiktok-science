@@ -988,5 +988,11 @@
     "slot": 1,
     "tema": "Epidemiologia",
     "assunto": "Análise de esgoto para prever surtos de doenças antes que se espalhem."
+  },
+  {
+    "data": "2026-09-06",
+    "slot": 0,
+    "tema": "Patologia",
+    "assunto": "A inflamação crônica silenciosa causa doenças graves e envelhecimento."
   }
 ]
