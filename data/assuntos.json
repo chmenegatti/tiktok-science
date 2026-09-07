@@ -1006,5 +1006,11 @@
     "slot": 0,
     "tema": "Veterinaria",
     "assunto": "O rato-toupeira-pelado é imune ao câncer e vive mais de 30 anos."
+  },
+  {
+    "data": "2026-09-07",
+    "slot": 1,
+    "tema": "Odontologia",
+    "assunto": "O esmalte dental é a substância mais dura do corpo, mas o ácido o destrói."
   }
 ]
