@@ -1000,5 +1000,11 @@
     "slot": 1,
     "tema": "Medicina",
     "assunto": "O corpo humano detecta e elimina milhares de células cancerosas todos os dias."
+  },
+  {
+    "data": "2026-09-07",
+    "slot": 0,
+    "tema": "Veterinaria",
+    "assunto": "O rato-toupeira-pelado é imune ao câncer e vive mais de 30 anos."
   }
 ]
