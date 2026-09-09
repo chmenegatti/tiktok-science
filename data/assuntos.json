@@ -1024,5 +1024,11 @@
     "slot": 1,
     "tema": "Psicologia",
     "assunto": "Excesso de opções pode paralisar decisões e diminuir a satisfação."
+  },
+  {
+    "data": "2026-09-09",
+    "slot": 0,
+    "tema": "Neuropsicologia",
+    "assunto": "O cérebro ignora informações visuais óbvias quando focado em outra coisa (Cegueira por desatenção)"
   }
 ]
