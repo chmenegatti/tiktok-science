@@ -1030,5 +1030,11 @@
     "slot": 0,
     "tema": "Neuropsicologia",
     "assunto": "O cérebro ignora informações visuais óbvias quando focado em outra coisa (Cegueira por desatenção)"
+  },
+  {
+    "data": "2026-09-09",
+    "slot": 1,
+    "tema": "Psiquiatria",
+    "assunto": "Sinestesia: percepção cruzada de sentidos como ver sons ou sentir gosto de palavras."
   }
 ]
