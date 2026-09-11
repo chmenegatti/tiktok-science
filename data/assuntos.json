@@ -1042,5 +1042,11 @@
     "slot": 0,
     "tema": "Psicanalise",
     "assunto": "A mente humana tem uma tendência inconsciente de repetir padrões dolorosos ou traumáticos."
+  },
+  {
+    "data": "2026-09-11",
+    "slot": 0,
+    "tema": "Linguistica",
+    "assunto": "Palavras que são impossíveis de traduzir em uma única palavra para outro idioma."
   }
 ]
