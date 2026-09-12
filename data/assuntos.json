@@ -1054,5 +1054,11 @@
     "slot": 0,
     "tema": "Antropologia",
     "assunto": "O controle do fogo foi a maior invenção da humanidade pré-histórica."
+  },
+  {
+    "data": "2026-09-12",
+    "slot": 1,
+    "tema": "Arqueologia",
+    "assunto": "A complexa e vasta rede de estradas do Império Inca, construída sem a roda."
   }
 ]
