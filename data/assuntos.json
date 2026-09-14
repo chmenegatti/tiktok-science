@@ -1072,5 +1072,11 @@
     "slot": 1,
     "tema": "Geografia",
     "assunto": "O Deserto do Saara já foi uma savana verde e cheia de vida selvagem."
+  },
+  {
+    "data": "2026-09-14",
+    "slot": 0,
+    "tema": "Cartografia",
+    "assunto": "É matematicamente impossível criar um mapa 2D perfeito da Terra sem distorções."
   }
 ]
