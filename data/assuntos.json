@@ -1084,5 +1084,11 @@
     "slot": 1,
     "tema": "Demografia",
     "assunto": "A velocidade do envelhecimento populacional global é a maior da história."
+  },
+  {
+    "data": "2026-09-15",
+    "slot": 0,
+    "tema": "Sociologia",
+    "assunto": "O experimento de Asch revela o poder da conformidade social."
   }
 ]
