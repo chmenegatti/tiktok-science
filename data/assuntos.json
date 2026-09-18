@@ -1126,5 +1126,11 @@
     "slot": 0,
     "tema": "Marketing",
     "assunto": "O Efeito Halo faz uma impressão inicial positiva influenciar tudo sobre uma marca."
+  },
+  {
+    "data": "2026-09-18",
+    "slot": 1,
+    "tema": "Direito",
+    "assunto": "O direito de permanecer calado e como ele protege contra a autoincriminação."
   }
 ]
