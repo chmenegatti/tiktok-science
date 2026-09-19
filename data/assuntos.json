@@ -1132,5 +1132,11 @@
     "slot": 1,
     "tema": "Direito",
     "assunto": "O direito de permanecer calado e como ele protege contra a autoincriminação."
+  },
+  {
+    "data": "2026-09-19",
+    "slot": 0,
+    "tema": "Criminologia",
+    "assunto": "A baixa confiabilidade científica do polígrafo (detector de mentiras)."
   }
 ]
