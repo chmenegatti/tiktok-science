@@ -1162,5 +1162,11 @@
     "slot": 1,
     "tema": "Historia da Arte",
     "assunto": "Grandes obras de arte escondem pinturas secretas por baixo."
+  },
+  {
+    "data": "2026-09-22",
+    "slot": 0,
+    "tema": "Artes Visuais",
+    "assunto": "A ciência por trás da detecção de falsificações em obras de arte."
   }
 ]
