@@ -1180,5 +1180,11 @@
     "slot": 0,
     "tema": "Cinema",
     "assunto": "O Efeito Kuleshov e como a montagem de filmes manipula emoções."
+  },
+  {
+    "data": "2026-09-23",
+    "slot": 1,
+    "tema": "Literatura",
+    "assunto": "A leitura de ficção modifica o cérebro, aumentando a empatia e a conectividade neural."
   }
 ]
