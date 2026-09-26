@@ -1216,5 +1216,11 @@
     "slot": 0,
     "tema": "Comunicacao",
     "assunto": "A desinformação se espalha mais rápido e mais longe que a verdade."
+  },
+  {
+    "data": "2026-09-26",
+    "slot": 1,
+    "tema": "Jornalismo",
+    "assunto": "A preferência humana por notícias negativas e seu impacto no jornalismo."
   }
 ]
