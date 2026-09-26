@@ -1210,5 +1210,11 @@
     "slot": 1,
     "tema": "Pedagogia",
     "assunto": "A ciência refuta a crença de que 'estilos de aprendizagem' fixos melhoram a educação."
+  },
+  {
+    "data": "2026-09-26",
+    "slot": 0,
+    "tema": "Comunicacao",
+    "assunto": "A desinformação se espalha mais rápido e mais longe que a verdade."
   }
 ]
