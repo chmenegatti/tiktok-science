@@ -1234,5 +1234,11 @@
     "slot": 1,
     "tema": "Arquivologia",
     "assunto": "A destruição deliberada de arquivos pode apagar a história de nações e grupos."
+  },
+  {
+    "data": "2026-09-28",
+    "slot": 0,
+    "tema": "Ciencia da Informacao",
+    "assunto": "O excesso de informação causa \"fadiga de decisão\" e piora a tomada de escolhas."
   }
 ]
