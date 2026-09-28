@@ -1240,5 +1240,11 @@
     "slot": 0,
     "tema": "Ciencia da Informacao",
     "assunto": "O excesso de informação causa \"fadiga de decisão\" e piora a tomada de escolhas."
+  },
+  {
+    "data": "2026-09-28",
+    "slot": 1,
+    "tema": "Meteorologia",
+    "assunto": "Raios vulcânicos são formados por colisões de cinzas e rochas na pluma eruptiva."
   }
 ]
