@@ -1264,5 +1264,11 @@
     "slot": 0,
     "tema": "Espeleologia",
     "assunto": "Estalagmites e estalactites registram o clima da Terra por milhares de anos."
+  },
+  {
+    "data": "2026-09-30",
+    "slot": 1,
+    "tema": "Sismologia",
+    "assunto": "Atividades humanas como fracking e descarte de fluidos podem causar terremotos."
   }
 ]
