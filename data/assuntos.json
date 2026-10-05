@@ -1312,5 +1312,11 @@
     "slot": 0,
     "tema": "Computacao Quantica",
     "assunto": "Partículas emaranhadas se influenciam instantaneamente, independente da distância."
+  },
+  {
+    "data": "2026-10-05",
+    "slot": 1,
+    "tema": "Blockchain",
+    "assunto": "O consumo energético da rede Bitcoin devido à Prova de Trabalho."
   }
 ]
