@@ -1318,5 +1318,11 @@
     "slot": 1,
     "tema": "Blockchain",
     "assunto": "O consumo energético da rede Bitcoin devido à Prova de Trabalho."
+  },
+  {
+    "data": "2026-10-06",
+    "slot": 0,
+    "tema": "Realidade Virtual",
+    "assunto": "O efeito Proteus faz avatares virtuais mudarem nosso comportamento real."
   }
 ]
