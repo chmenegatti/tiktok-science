@@ -1324,5 +1324,11 @@
     "slot": 0,
     "tema": "Realidade Virtual",
     "assunto": "O efeito Proteus faz avatares virtuais mudarem nosso comportamento real."
+  },
+  {
+    "data": "2026-10-06",
+    "slot": 1,
+    "tema": "Realidade Aumentada",
+    "assunto": "A Realidade Aumentada pode alterar nossa percepção de propriedades físicas de objetos reais."
   }
 ]
