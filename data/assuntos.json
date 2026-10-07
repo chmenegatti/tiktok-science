@@ -1330,5 +1330,11 @@
     "slot": 1,
     "tema": "Realidade Aumentada",
     "assunto": "A Realidade Aumentada pode alterar nossa percepção de propriedades físicas de objetos reais."
+  },
+  {
+    "data": "2026-10-07",
+    "slot": 0,
+    "tema": "Astrofisica",
+    "assunto": "A origem de todos os elementos pesados do universo em supernovas."
   }
 ]
