@@ -1342,5 +1342,11 @@
     "slot": 1,
     "tema": "Biologia",
     "assunto": "A incrível capacidade de sobrevivência dos tardígrados em condições extremas, inclusive no espaço."
+  },
+  {
+    "data": "2026-10-08",
+    "slot": 0,
+    "tema": "Quimica",
+    "assunto": "O carbono forma materiais com propriedades radicalmente diferentes, como diamante e grafeno."
   }
 ]
