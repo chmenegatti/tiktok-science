@@ -1348,5 +1348,11 @@
     "slot": 0,
     "tema": "Quimica",
     "assunto": "O carbono forma materiais com propriedades radicalmente diferentes, como diamante e grafeno."
+  },
+  {
+    "data": "2026-10-08",
+    "slot": 1,
+    "tema": "Fisica",
+    "assunto": "Bolhas de som podem gerar luz (Sonoluminescência)"
   }
 ]
