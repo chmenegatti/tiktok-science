@@ -1372,5 +1372,11 @@
     "slot": 0,
     "tema": "Paleontologia",
     "assunto": "Descoberta de tecidos moles em fósseis de dinossauros"
+  },
+  {
+    "data": "2026-10-10",
+    "slot": 1,
+    "tema": "Oceanografia",
+    "assunto": "Ecossistemas de fontes hidrotermais no fundo do oceano que prosperam sem luz solar."
   }
 ]
