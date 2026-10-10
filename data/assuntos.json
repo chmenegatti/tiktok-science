@@ -1366,5 +1366,11 @@
     "slot": 1,
     "tema": "Geologia",
     "assunto": "A Grande Desconformidade é um vasto hiato de tempo geológico na Terra."
+  },
+  {
+    "data": "2026-10-10",
+    "slot": 0,
+    "tema": "Paleontologia",
+    "assunto": "Descoberta de tecidos moles em fósseis de dinossauros"
   }
 ]
