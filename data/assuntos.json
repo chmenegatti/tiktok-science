@@ -1390,5 +1390,11 @@
     "slot": 0,
     "tema": "Astronomia",
     "assunto": "A Nebulosa Bumerangue é o lugar mais frio do universo."
+  },
+  {
+    "data": "2026-10-12",
+    "slot": 1,
+    "tema": "Microbiologia",
+    "assunto": "Bactérias bioluminescentes iluminam oceanos e organismos."
   }
 ]
