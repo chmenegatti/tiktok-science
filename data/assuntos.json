@@ -1426,5 +1426,11 @@
     "slot": 0,
     "tema": "Estatistica",
     "assunto": "Viés de sobrevivência leva a conclusões erradas por focar no sucesso."
+  },
+  {
+    "data": "2026-10-15",
+    "slot": 1,
+    "tema": "Ciencia da Computacao",
+    "assunto": "O problema do ano 2038 ameaça sistemas 32-bit com falhas massivas."
   }
 ]
