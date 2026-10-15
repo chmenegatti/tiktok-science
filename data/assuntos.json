@@ -1420,5 +1420,11 @@
     "slot": 1,
     "tema": "Matematica",
     "assunto": "O Paradoxo de Banach-Tarski permite duplicar uma esfera usando apenas suas partes."
+  },
+  {
+    "data": "2026-10-15",
+    "slot": 0,
+    "tema": "Estatistica",
+    "assunto": "Viés de sobrevivência leva a conclusões erradas por focar no sucesso."
   }
 ]
