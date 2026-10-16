@@ -1438,5 +1438,11 @@
     "slot": 0,
     "tema": "Inteligencia Artificial",
     "assunto": "A Inteligência Artificial pode se autoaprimorar e criar IAs mais inteligentes."
+  },
+  {
+    "data": "2026-10-16",
+    "slot": 1,
+    "tema": "Ciencia de Dados",
+    "assunto": "A importância de distinguir correlação de causalidade na análise de dados."
   }
 ]
