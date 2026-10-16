@@ -1432,5 +1432,11 @@
     "slot": 1,
     "tema": "Ciencia da Computacao",
     "assunto": "O problema do ano 2038 ameaça sistemas 32-bit com falhas massivas."
+  },
+  {
+    "data": "2026-10-16",
+    "slot": 0,
+    "tema": "Inteligencia Artificial",
+    "assunto": "A Inteligência Artificial pode se autoaprimorar e criar IAs mais inteligentes."
   }
 ]
