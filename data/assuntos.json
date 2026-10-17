@@ -1450,5 +1450,11 @@
     "slot": 0,
     "tema": "Engenharia",
     "assunto": "Concreto geopolimérico substitui cimento por resíduos e reduz emissões de carbono."
+  },
+  {
+    "data": "2026-10-17",
+    "slot": 1,
+    "tema": "Engenharia Aeroespacial",
+    "assunto": "Sondas espaciais usam planetas para ganhar velocidade sem combustível"
   }
 ]
