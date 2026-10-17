@@ -1444,5 +1444,11 @@
     "slot": 1,
     "tema": "Ciencia de Dados",
     "assunto": "A importância de distinguir correlação de causalidade na análise de dados."
+  },
+  {
+    "data": "2026-10-17",
+    "slot": 0,
+    "tema": "Engenharia",
+    "assunto": "Concreto geopolimérico substitui cimento por resíduos e reduz emissões de carbono."
   }
 ]
