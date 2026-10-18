@@ -1456,5 +1456,11 @@
     "slot": 1,
     "tema": "Engenharia Aeroespacial",
     "assunto": "Sondas espaciais usam planetas para ganhar velocidade sem combustível"
+  },
+  {
+    "data": "2026-10-18",
+    "slot": 1,
+    "tema": "Engenharia Mecanica",
+    "assunto": "Trens de levitação magnética (Maglev) levitam e se movem sem contato."
   }
 ]
