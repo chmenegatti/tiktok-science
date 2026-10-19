@@ -1462,5 +1462,11 @@
     "slot": 1,
     "tema": "Engenharia Mecanica",
     "assunto": "Trens de levitação magnética (Maglev) levitam e se movem sem contato."
+  },
+  {
+    "data": "2026-10-19",
+    "slot": 0,
+    "tema": "Engenharia Civil",
+    "assunto": "Pontes precisam 'respirar' expandindo e contraindo para não colapsar."
   }
 ]
