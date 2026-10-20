@@ -1480,5 +1480,11 @@
     "slot": 0,
     "tema": "Engenharia Biomedica",
     "assunto": "Implantes médicos biodegradáveis que dissolvem no corpo após uso."
+  },
+  {
+    "data": "2026-10-20",
+    "slot": 1,
+    "tema": "Robotica",
+    "assunto": "Robôs vivos feitos de células biológicas se auto-replicam."
   }
 ]
