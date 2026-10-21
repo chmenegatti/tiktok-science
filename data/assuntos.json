@@ -1492,5 +1492,11 @@
     "slot": 0,
     "tema": "Nanotecnologia",
     "assunto": "Nanopartículas entregam medicamentos diretamente a células doentes, minimizando efeitos colaterais."
+  },
+  {
+    "data": "2026-10-21",
+    "slot": 1,
+    "tema": "Ciencia dos Materiais",
+    "assunto": "Metais líquidos se deformam e voltam à forma original sem fadiga."
   }
 ]
