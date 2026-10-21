@@ -1486,5 +1486,11 @@
     "slot": 1,
     "tema": "Robotica",
     "assunto": "Robôs vivos feitos de células biológicas se auto-replicam."
+  },
+  {
+    "data": "2026-10-21",
+    "slot": 0,
+    "tema": "Nanotecnologia",
+    "assunto": "Nanopartículas entregam medicamentos diretamente a células doentes, minimizando efeitos colaterais."
   }
 ]
