@@ -1498,5 +1498,11 @@
     "slot": 1,
     "tema": "Ciencia dos Materiais",
     "assunto": "Metais líquidos se deformam e voltam à forma original sem fadiga."
+  },
+  {
+    "data": "2026-10-22",
+    "slot": 0,
+    "tema": "Bioquimica",
+    "assunto": "Nosso DNA é danificado milhares de vezes por dia, mas é constantemente reparado por um exército molecular."
   }
 ]
