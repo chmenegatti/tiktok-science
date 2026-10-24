@@ -1516,5 +1516,11 @@
     "slot": 1,
     "tema": "Imunologia",
     "assunto": "O sistema imunológico pode atacar o próprio corpo por falha em reconhecer o \"self\"."
+  },
+  {
+    "data": "2026-10-24",
+    "slot": 0,
+    "tema": "Virologia",
+    "assunto": "Vírus podem ser usados para combater bactérias resistentes a antibióticos."
   }
 ]
