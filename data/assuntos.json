@@ -1522,5 +1522,11 @@
     "slot": 0,
     "tema": "Virologia",
     "assunto": "Vírus podem ser usados para combater bactérias resistentes a antibióticos."
+  },
+  {
+    "data": "2026-10-24",
+    "slot": 1,
+    "tema": "Parasitologia",
+    "assunto": "O fungo Ophiocordyceps transforma insetos em \"zumbis\" para se reproduzir."
   }
 ]
