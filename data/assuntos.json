@@ -1534,5 +1534,11 @@
     "slot": 0,
     "tema": "Entomologia",
     "assunto": "O 'sangue' dos insetos não transporta oxigênio."
+  },
+  {
+    "data": "2026-10-25",
+    "slot": 1,
+    "tema": "Ornitologia",
+    "assunto": "Aves enxergam cores e padrões invisíveis aos olhos humanos através da visão ultravioleta."
   }
 ]
