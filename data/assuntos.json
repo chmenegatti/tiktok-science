@@ -1570,5 +1570,11 @@
     "slot": 0,
     "tema": "Fisiologia",
     "assunto": "O corpo humano emite luz visível, mas fraca demais para ser percebida."
+  },
+  {
+    "data": "2026-10-28",
+    "slot": 1,
+    "tema": "Anatomia",
+    "assunto": "O olho humano vê invertido, e o cérebro corrige a imagem."
   }
 ]
