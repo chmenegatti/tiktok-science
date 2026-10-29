@@ -1582,5 +1582,11 @@
     "slot": 0,
     "tema": "Embriologia",
     "assunto": "A maioria dos embriões humanos não sobrevive à fase inicial."
+  },
+  {
+    "data": "2026-10-29",
+    "slot": 1,
+    "tema": "Citologia",
+    "assunto": "Milhões de células morrem e nascem a cada segundo no corpo humano."
   }
 ]
