@@ -1576,5 +1576,11 @@
     "slot": 1,
     "tema": "Anatomia",
     "assunto": "O olho humano vê invertido, e o cérebro corrige a imagem."
+  },
+  {
+    "data": "2026-10-29",
+    "slot": 0,
+    "tema": "Embriologia",
+    "assunto": "A maioria dos embriões humanos não sobrevive à fase inicial."
   }
 ]
