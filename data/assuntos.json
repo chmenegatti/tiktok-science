@@ -1600,5 +1600,11 @@
     "slot": 1,
     "tema": "Epidemiologia",
     "assunto": "O papel desproporcional dos super-espalhadores em epidemias e pandemias."
+  },
+  {
+    "data": "2026-11-01",
+    "slot": 0,
+    "tema": "Patologia",
+    "assunto": "O processo complexo e letal da metástase do câncer pelo corpo."
   }
 ]
