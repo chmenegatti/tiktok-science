@@ -1606,5 +1606,11 @@
     "slot": 0,
     "tema": "Patologia",
     "assunto": "O processo complexo e letal da metástase do câncer pelo corpo."
+  },
+  {
+    "data": "2026-11-01",
+    "slot": 1,
+    "tema": "Medicina",
+    "assunto": "Pessoas sentem dor real em membros que não existem mais."
   }
 ]
