@@ -1618,5 +1618,11 @@
     "slot": 0,
     "tema": "Veterinaria",
     "assunto": "Cães e gatos podem ter transtorno de estresse pós-traumático (PTSD)."
+  },
+  {
+    "data": "2026-11-02",
+    "slot": 1,
+    "tema": "Odontologia",
+    "assunto": "A conexão entre a saúde bucal e doenças sistêmicas graves."
   }
 ]
