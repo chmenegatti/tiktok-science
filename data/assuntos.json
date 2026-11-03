@@ -1630,5 +1630,11 @@
     "slot": 0,
     "tema": "Nutricao",
     "assunto": "A descoberta do sabor umami e sua importância nutricional"
+  },
+  {
+    "data": "2026-11-03",
+    "slot": 1,
+    "tema": "Psicologia",
+    "assunto": "A dissonância cognitiva nos força a mudar crenças para justificar ações."
   }
 ]
