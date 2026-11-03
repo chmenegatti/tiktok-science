@@ -1624,5 +1624,11 @@
     "slot": 1,
     "tema": "Odontologia",
     "assunto": "A conexão entre a saúde bucal e doenças sistêmicas graves."
+  },
+  {
+    "data": "2026-11-03",
+    "slot": 0,
+    "tema": "Nutricao",
+    "assunto": "A descoberta do sabor umami e sua importância nutricional"
   }
 ]
