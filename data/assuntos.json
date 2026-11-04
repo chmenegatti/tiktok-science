@@ -1642,5 +1642,11 @@
     "slot": 0,
     "tema": "Neuropsicologia",
     "assunto": "O cérebro não possui receptores de dor e, por isso, não sente dor, apesar de ser o órgão que a processa."
+  },
+  {
+    "data": "2026-11-04",
+    "slot": 1,
+    "tema": "Psiquiatria",
+    "assunto": "A Síndrome de Capgras faz pessoas acreditarem que entes queridos são impostores."
   }
 ]
