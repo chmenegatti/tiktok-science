@@ -1636,5 +1636,11 @@
     "slot": 1,
     "tema": "Psicologia",
     "assunto": "A dissonância cognitiva nos força a mudar crenças para justificar ações."
+  },
+  {
+    "data": "2026-11-04",
+    "slot": 0,
+    "tema": "Neuropsicologia",
+    "assunto": "O cérebro não possui receptores de dor e, por isso, não sente dor, apesar de ser o órgão que a processa."
   }
 ]
