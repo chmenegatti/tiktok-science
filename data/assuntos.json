@@ -1660,5 +1660,11 @@
     "slot": 1,
     "tema": "Ciencias Cognitivas",
     "assunto": "O cérebro atrasa a visão para sincronizar com o som."
+  },
+  {
+    "data": "2026-11-06",
+    "slot": 0,
+    "tema": "Linguistica",
+    "assunto": "A linguagem que falamos molda nossa percepção da realidade."
   }
 ]
