@@ -1708,5 +1708,11 @@
     "slot": 1,
     "tema": "Demografia",
     "assunto": "A maioria dos países tem taxa de natalidade abaixo do nível de reposição."
+  },
+  {
+    "data": "2026-11-10",
+    "slot": 0,
+    "tema": "Sociologia",
+    "assunto": "A Tragédia dos Comuns explica por que recursos compartilhados são esgotados."
   }
 ]
