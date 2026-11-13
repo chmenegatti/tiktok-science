@@ -1744,5 +1744,11 @@
     "slot": 1,
     "tema": "Contabilidade",
     "assunto": "A contabilidade de partidas dobradas revolucionou o mundo financeiro."
+  },
+  {
+    "data": "2026-11-13",
+    "slot": 0,
+    "tema": "Marketing",
+    "assunto": "O efeito dotação faz valorizarmos mais o que já possuímos."
   }
 ]
