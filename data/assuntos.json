@@ -1762,5 +1762,11 @@
     "slot": 0,
     "tema": "Etica",
     "assunto": "Moral Licensing: Boas ações passadas podem levar a escolhas éticas piores no futuro."
+  },
+  {
+    "data": "2026-11-15",
+    "slot": 1,
+    "tema": "Logica",
+    "assunto": "O problema fundamental da indução na lógica e ciência."
   }
 ]
