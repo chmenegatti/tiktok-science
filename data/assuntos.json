@@ -1780,5 +1780,11 @@
     "slot": 1,
     "tema": "Historia da Arte",
     "assunto": "O roubo da Mona Lisa a tornou a pintura mais famosa do mundo."
+  },
+  {
+    "data": "2026-11-17",
+    "slot": 0,
+    "tema": "Artes Visuais",
+    "assunto": "Pigmentos tóxicos em obras de arte históricas e seus riscos"
   }
 ]
