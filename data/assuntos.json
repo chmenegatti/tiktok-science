@@ -1804,5 +1804,11 @@
     "slot": 1,
     "tema": "Literatura",
     "assunto": "A vasta maioria da literatura antiga foi perdida para sempre."
+  },
+  {
+    "data": "2026-11-19",
+    "slot": 0,
+    "tema": "Arquitetura",
+    "assunto": "A Torre de Pisa foi estabilizada, mas ainda pende por design."
   }
 ]
