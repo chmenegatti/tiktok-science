@@ -1834,5 +1834,11 @@
     "slot": 0,
     "tema": "Comunicacao",
     "assunto": "A IA pode simular vozes e vídeos de pessoas com realismo chocante (Deepfakes)."
+  },
+  {
+    "data": "2026-11-21",
+    "slot": 1,
+    "tema": "Jornalismo",
+    "assunto": "O \"Efeito Mídia Hostil\" faz partidários acharem notícias neutras tendenciosas contra eles."
   }
 ]
