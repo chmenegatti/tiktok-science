@@ -1846,5 +1846,11 @@
     "slot": 0,
     "tema": "Biblioteconomia",
     "assunto": "A prática histórica de encadernar livros com pele humana"
+  },
+  {
+    "data": "2026-11-22",
+    "slot": 1,
+    "tema": "Arquivologia",
+    "assunto": "O \"direito ao esquecimento\" colide com a função dos arquivos de preservar a história."
   }
 ]
