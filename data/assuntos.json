@@ -1864,5 +1864,11 @@
     "slot": 1,
     "tema": "Meteorologia",
     "assunto": "Chuvas de animais é um fenômeno meteorológico real e bizarro"
+  },
+  {
+    "data": "2026-11-24",
+    "slot": 1,
+    "tema": "Hidrologia",
+    "assunto": "Criovulcões: vulcões que expelem líquidos gelados em luas e planetas distantes."
   }
 ]
