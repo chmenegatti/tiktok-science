@@ -1882,5 +1882,11 @@
     "slot": 0,
     "tema": "Vulcanologia",
     "assunto": "Gases vulcânicos podem ser mais mortais que a lava."
+  },
+  {
+    "data": "2026-11-26",
+    "slot": 1,
+    "tema": "Glaciologia",
+    "assunto": "A crosta terrestre afunda sob o peso do gelo e se eleva com o degelo."
   }
 ]
